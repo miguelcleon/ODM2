@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
 
 from cvservices.models import ActionType, MethodType, OrganizationType, SamplingFeatureGeotype, \
-    SamplingFeatureType, SiteType
+    SamplingFeatureType, SiteType, AggregationStatistic
 
 
 # list views
@@ -38,6 +38,11 @@ class SiteTypeView(VocabularyListView):
     model = SiteType
     template_name = 'cvinterface/vocabularies/sitetype_list.html'
 
+# Denver
+class AggregationStatisticView(VocabularyListView):
+    model = AggregationStatistic
+    template_name = 'cvinterface/vocabularies/aggregationstatistic_list.html'
+
 
 action_type_view = ActionTypeView.as_view()
 method_type_view = MethodTypeView.as_view()
@@ -45,12 +50,14 @@ organization_type_view = OrganizationTypeView.as_view()
 sampling_feature_geotype_view = SamplingFeatureGeotypeView.as_view()
 sampling_feature_type_view = SamplingFeatureTypeView.as_view()
 site_type_view = SiteTypeView.as_view()
-
+# Denver
+aggregation_statistic_view = AggregationStatisticView.as_view()
 
 view_functions = {ActionTypeView: action_type_view, MethodTypeView: method_type_view,
                   OrganizationTypeView: organization_type_view,
                   SamplingFeatureGeotypeView: sampling_feature_geotype_view,
-                  SamplingFeatureTypeView: sampling_feature_type_view, SiteTypeView: site_type_view}
+                  SamplingFeatureTypeView: sampling_feature_type_view, SiteTypeView: site_type_view,
+		  AggregationStatisticView: aggregation_statistic_view}
 
 
 # Detail Views
@@ -82,3 +89,8 @@ class SamplingFeatureTypeDetailView(DetailView):
 class SiteTypeDetailView(DetailView):
     model = SiteType
     template_name = 'cvinterface/vocabularies/sitetype_detail.html'
+
+# Denver
+class AggregationStatisticView(DetailView):
+    model = AggregationStatistic
+    template_name = 'cvinterface/vocabularies/aggregationstatistic_detail.html'

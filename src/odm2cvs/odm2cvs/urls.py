@@ -7,10 +7,10 @@ from cvservices.api import v1_api
 from cvinterface.views.base_views import HomeView
 
 from cvinterface.views.vocabulary_views import action_type_view, method_type_view, organization_type_view, \
-    sampling_feature_geotype_view, sampling_feature_type_view, site_type_view
+    sampling_feature_geotype_view, sampling_feature_type_view, site_type_view, aggregation_statistic_view
 
 from cvinterface.views.vocabulary_views import ActionTypeDetailView, MethodTypeDetailView, OrganizationTypeDetailView, \
-    SamplingFeatureGeotypeDetailView, SamplingFeatureTypeDetailView, SiteTypeDetailView
+    SamplingFeatureGeotypeDetailView, SamplingFeatureTypeDetailView, SiteTypeDetailView, AggregationStatisticView
 
 from cvinterface.views.request_views import action_type_request_view, method_type_request_view, \
     organization_type_request_view, sampling_feature_geotype_request_view, sampling_feature_type_request_view, \
@@ -69,5 +69,10 @@ urlpatterns = patterns('',
 
     url(r'^' + settings.SITE_URL + 'sitetype/$', site_type_view, name='sitetype'),
     url(r'^' + settings.SITE_URL + 'sitetype/(?P<pk>\w+)/$', SiteTypeDetailView.as_view(), name='sitetype_detail'),
+
+    # Denver
+    # url(r'^' + settings.SITE_URL + 'aggregationstatistic/$', aggregation_statistic_view, name='sitetype'),
+    # url(r'^' + settings.SITE_URL + 'aggregationstatistic/(?P<pk>\w+)/$', AggregationStatisticDetailView.as_view(), name='aggregationstatistic_detail'),
+
 
 )

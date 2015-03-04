@@ -11,6 +11,7 @@ from rdflib import Graph, URIRef, Literal
 from rdflib import Namespace as ns
 from rdflib.namespace import SKOS, RDF
 
+import logging
 
 class ModelRdfResource(ModelResource):
     scheme = None
@@ -47,7 +48,7 @@ class RdfSerializer(Serializer):
         # get scheme: resource being requested. actionTypeCV, methodTypeCV, etc.
         scheme = Scheme.objects.get(name=options['scheme'])
 
-        baseURI = 'http://vocabulary.hydroserver.org/ODM2/ODM2Terms/'
+        baseURI = 'http://vocabulary.odm2.org/ODM2/ODM2Terms/'
         graph = Graph()
         odm2 = ns(baseURI)
         dc = ns('http://purl.org/dc/elements/1.1/')
@@ -58,6 +59,7 @@ class RdfSerializer(Serializer):
 
         # If requesting an entire CV.
         if isinstance(data, dict):
+	    logging.info("data: " + str(data))
             # Add a SKOS ConceptScheme class to the graph.
             (graph.add((URIRef(scheme.uri), RDF['type'],
                         SKOS['ConceptScheme'])))
@@ -110,7 +112,7 @@ class RdfSerializer(Serializer):
                         SKOS['ConceptScheme'])))
             (graph.add((URIRef(scheme.uri), dc['title'],
                         Literal(scheme.title))))
-            (graph.add((URIRef(scheme.uri), dc['creator'],
+	    (graph.add((URIRef(scheme.uri), dc['creator'],
                         Literal(scheme.creator))))
             (graph.add((URIRef(scheme.uri), dc['description'],
                         Literal(scheme.description))))
@@ -123,6 +125,7 @@ class RdfSerializer(Serializer):
 
             # Add labels within concept class.
             for field in data.data.keys():
+		logging.info(field)
                 if field == 'term' or field == u'resource_uri':
                     continue
                 elif data.data[field].rstrip('\r\n') == '':

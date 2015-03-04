@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>ODM2 Control Vocabularies</title>
+        <title>ODM2 Controlled Vocabularies</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" media="screen">
         <link rel="stylesheet" href="{% static 'css/bootswatch.min.css' %}">
@@ -15,7 +15,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="" class="navbar-brand">ODM2 Control Vocabularies</a>
+                <a href="{% url "home" %}" class="navbar-brand">ODM2 Controlled Vocabularies</a>
             </div>
         </div>
     </div>
@@ -30,6 +30,9 @@
             {% endblock %}
         </div>
     </div>
+    
+    <div class="container">
+        <p>This material is based upon work supported by the National Science Foundation under Grants 1224638 and 1332257. Any opinions, fndings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. </p>    </div>
 
     <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
