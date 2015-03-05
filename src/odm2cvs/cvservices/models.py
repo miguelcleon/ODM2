@@ -52,7 +52,7 @@ class ActionType(ControlVocabulary, AbstractActionType):
     class Meta:
         managed = False
         db_table = 'ActionTypeCV'
-        verbose_name = 'Action Type Control Vocabulary'
+        verbose_name = 'Action Type CV'
 
 
 class ActionTypeRequest(ControlVocabularyRequest, ControlVocabulary, AbstractActionType):
@@ -66,7 +66,7 @@ class MethodType(ControlVocabulary):
     class Meta:
         managed = False
         db_table = 'MethodTypeCV'
-        verbose_name = 'Method Type Control Vocabulary'
+        verbose_name = 'Method Type CV'
 
 
 class MethodTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -80,7 +80,7 @@ class OrganizationType(ControlVocabulary):
     class Meta:
         managed = False
         db_table = 'OrganizationTypeCV'
-        verbose_name = 'Organization Type Control Vocabulary'
+        verbose_name = 'Organization Type CV'
 
 
 class OrganizationTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -121,269 +121,298 @@ class SamplingFeatureTypeRequest(ControlVocabularyRequest, ControlVocabulary):
 class SiteType(ControlVocabulary):
     class Meta:
         managed = False
-        db_table = 'sitetypecv'
-        verbose_name = 'Site Type Control Vocabulary'
+        db_table = 'SiteTypeCV'
+        verbose_name = 'Site Type CV'
 
 
 class SiteTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
         managed = False
-        db_table = 'sitetypecvrequests'
+        db_table = 'SiteTypeCVRequests'
         verbose_name = 'Site Type CV Request'
 
-# Denver
+
 class AggregationStatistic(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'aggregationstatisticcv'
-	verbose_name = 'Aggregation Statistic CV'
+        managed = False
+        db_table = 'AggregationStatisticCV'
+        verbose_name = 'Aggregation Statistic CV'
+
 
 class AggregationStatisticRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'aggregationstatisticcvrequests'
-	verbose_name = 'Aggregation Statistic CV Request'
+        managed = False
+        db_table = 'AggregationStatisticCVRequests'
+        verbose_name = 'Aggregation Statistic CV Request'
 
 
 class AnnotationType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'annotationtypecv'
-	verbose_name = 'Annotation Type CV'
+        managed = False
+        db_table = 'AnnotationTypeCV'
+        verbose_name = 'Annotation Type CV'
+
 
 class AnnotationTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'annotationtypecvrequests'
-	verbose_name = 'Annotation Type CV Request'
+        managed = False
+        db_table = 'AnnotationTypeCVRequests'
+        verbose_name = 'Annotation Type CV Request'
 
 
 class CensorCode(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'censorcodecv'
-	verbose_name = 'Censor Code CV'
+        managed = False
+        db_table = 'CensorCodeCV'
+        verbose_name = 'Censor Code CV'
+
 
 class CensorCodeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'censorcodecvrequests'
-	verbose_name = 'Censor Code CV Request'
+        managed = False
+        db_table = 'CensorCodeCVRequests'
+        verbose_name = 'Censor Code CV Request'
+
 
 class DatasetType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'datasettypecv'
-	verbose_name = 'Dataset Type CV'
+        managed = False
+        db_table = 'DatasetTypeCV'
+        verbose_name = 'Dataset Type CV'
+
 
 class DatasetTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'datasettypecvrequests'
-	verbose_name = 'Dataset Type CV Request'
+        managed = False
+        db_table = 'DatasetTypeCVRequests'
+        verbose_name = 'Dataset Type CV Request'
+
 
 class DirectiveType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'directivetypecv'
-	verbose_name = 'Directive Type CV'
+        managed = False
+        db_table = 'DirectiveTypeCV'
+        verbose_name = 'Directive Type CV'
+
 
 class DirectiveTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'directivetypecvrequests'
-	verbose_name = 'Directive Type CV Request'
+        managed = False
+        db_table = 'DirectiveTypeCVRequests'
+        verbose_name = 'Directive Type CV Request'
 
 
 class ElevationDatum(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'elevationdatumcv'
-	verbose_name = 'Elevation Datum CV'
+        managed = False
+        db_table = 'ElevationDatumCV'
+        verbose_name = 'Elevation Datum CV'
+
 
 class ElevationDatumRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'elevationdatumcvrequests'
-	verbose_name = 'Elevation Datum CV Request'
+        managed = False
+        db_table = 'ElevationDatumCVrequests'
+        verbose_name = 'Elevation Datum CV Request'
 
 
 class EquipmentType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'equipmenttypecv'
-	verbose_name = 'Equipment Type CV'
+        managed = False
+        db_table = 'EquipmentTypeCV'
+        verbose_name = 'Equipment Type CV'
+
 
 class EquipmentTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'equipmenttypecvrequests'
-	verbose_name = 'Equipment Type CV Request'
+        managed = False
+        db_table = 'EquipmentTypeCVRequests'
+        verbose_name = 'Equipment Type CV Request'
 
 
 class PropertyDataType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'propertydatatypecv'
-	verbose_name = 'Property Data Type CV'
+        managed = False
+        db_table = 'PropertyDataTypeCV'
+        verbose_name = 'Property Data Type CV'
+
 
 class PropertyDataTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'propertydatatypecvrequests'
-	verbose_name = 'Property Data Type CV Request'
+        managed = False
+        db_table = 'PropertyDataTypeCVRequests'
+        verbose_name = 'Property Data Type CV Request'
+
 
 class QualityCode(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'qualitycodecv'
-	verbose_name = 'Quality Code CV'
+        managed = False
+        db_table = 'QualityCodeCV'
+        verbose_name = 'Quality Code CV'
+
 
 class QualityCodeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'qualitycodecvrequests'
-	verbose_name = 'Quality Code CV Request'
+        managed = False
+        db_table = 'QualityCodeCVRequests'
+        verbose_name = 'Quality Code CV Request'
 
 
 class ReferenceMaterialMedium(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'referencematerialmediumcv'
-	verbose_name = 'Reference Material Medium CV'
+        managed = False
+        db_table = 'ReferenceMaterialMediumCV'
+        verbose_name = 'Reference Material Medium CV'
+
 
 class ReferenceMaterialMediumRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'referencematerialmediumcvrequests'
-	verbose_name = 'Reference Material Medium CV Request'
+        managed = False
+        db_table = 'ReferenceMaterialMediumCVRequests'
+        verbose_name = 'Reference Material Medium CV Request'
+
 
 class ResultType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'resulttypecv'
-	verbose_name = 'Result Type CV'
+        managed = False
+        db_table = 'ResultTypeCV'
+        verbose_name = 'Result Type CV'
+
 
 class ResultTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'resulttypecvrequests'
-	verbose_name = 'Result Type CV Request'
+        managed = False
+        db_table = 'ResultTypeCVRequests'
+        verbose_name = 'Result Type CV Request'
+
 
 class SampledMedium(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'sampledmediumcv'
-	verbose_name = 'Sampled Medium CV'
+        managed = False
+        db_table = 'SampledMediumCV'
+        verbose_name = 'Sampled Medium CV'
+
 
 class SampledMediumRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'sampledmediumcvrequests'
-	verbose_name = 'Sampled Medium CV Request'
+        managed = False
+        db_table = 'SampledMediumCVRequests'
+        verbose_name = 'Sampled Medium CV Request'
 
-class SpatialOffsetType(ControlVocabulary):    
+
+class SpatialOffsetType(ControlVocabulary):
     offset1 = models.TextField(blank=True)
     offset2 = models.TextField(blank=True)
     offset3 = models.TextField(blank=True)
 
     class Meta:
-	managed = False
-	db_table = 'spatialoffsettypecv'
-	verbose_name = 'Spatial Offset Type CV'
+        managed = False
+        db_table = 'SpatialOffsetTypeCV'
+        verbose_name = 'Spatial Offset Type CV'
+
 
 class SpatialOffsetTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'spatialoffsettypecvrequests'
-	verbose_name = 'Spatial Offset Type CV Request'
+        managed = False
+        db_table = 'SpatialOffsetTypeCVRequests'
+        verbose_name = 'Spatial Offset Type CV Request'
 
 
 class Speciation(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'speciationcv'
-	verbose_name = 'Speciation CV'
+        managed = False
+        db_table = 'SpeciationCV'
+        verbose_name = 'Speciation CV'
+
 
 class SpeciationRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'peciationcvrequests'
-	verbose_name = 'Speciation CV Request'
+        managed = False
+        db_table = 'SpeciationCVrequests'
+        verbose_name = 'Speciation CV Request'
 
 
 class SpecimenMedium(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'specimenmediumcv'
-	verbose_name = 'Specimen Medium CV'
+        managed = False
+        db_table = 'SpecimenMediumCV'
+        verbose_name = 'Specimen Medium CV'
+
 
 class SpecimenMediumRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'specimenmediumcvrequests'
-	verbose_name = 'Specimen Medium CV Request'
+        managed = False
+        db_table = 'SpecimenMediumCVRequests'
+        verbose_name = 'Specimen Medium CV Request'
 
 
 class SpecimenType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'specimentypecv'
-	verbose_name = 'Specimen Type CV'
+        managed = False
+        db_table = 'SpecimenTypeCV'
+        verbose_name = 'Specimen Type CV'
+
 
 class SpecimenTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'specimentypecvrequests'
-	verbose_name = 'Specimen Type CV Request'
+        managed = False
+        db_table = 'SpecimenTypeCVRequests'
+        verbose_name = 'Specimen Type CV Request'
+
 
 class Status(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'statuscv'
-	verbose_name = 'Status CV'
+        managed = False
+        db_table = 'StatusCV'
+        verbose_name = 'Status CV'
+
 
 class StatusRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'statuscvrequests'
-	verbose_name = 'Status CV Request'
+        managed = False
+        db_table = 'StatusCVRequests'
+        verbose_name = 'Status CV Request'
+
 
 class TaxonomicClassifierType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'taxonomicclassifiertypecv'
-	verbose_name = 'Taxonomic Classifier Type CV'
+        managed = False
+        db_table = 'TaxonomicClassifierTypeCV'
+        verbose_name = 'Taxonomic Classifier Type CV'
+
 
 class TaxonomicClassifierTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'taxonomicclassifiertypecvrequests'
-	verbose_name = 'Taxonomical Classifier Type CV Request'
+        managed = False
+        db_table = 'TaxonomicClassifierTypeCVRequests'
+        verbose_name = 'Taxonomical Classifier Type CV Request'
+
 
 class VariableName(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'variablenamecv'
-	verbose_name = 'Variable Name CV'
+        managed = False
+        db_table = 'VariableNameCV'
+        verbose_name = 'Variable Name CV'
+
 
 class VariableNameRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'variablenamecvrequests'
-	verbose_name = 'Variable Name CV Request'
+        managed = False
+        db_table = 'VariableNameCVRequests'
+        verbose_name = 'Variable Name CV Request'
 
 
 class VariableType(ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'variabletypecv'
-	verbose_name = 'Variable Type CV'
+        managed = False
+        db_table = 'VariableTypeCV'
+        verbose_name = 'Variable Type CV'
+
 
 class VariableTypeRequest(ControlVocabularyRequest, ControlVocabulary):
     class Meta:
-	managed = False
-	db_table = 'variabletypecvrequests'
-	verbose_name = 'Variable Type CV Request'
+        managed = False
+        db_table = 'VariableTypeCVRequests'
+        verbose_name = 'Variable Type CV Request'
 
 
