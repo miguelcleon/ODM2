@@ -1,96 +1,39 @@
-from django.views.generic import ListView, DetailView
+from django.core.urlresolvers import reverse
 
-from cvservices.models import ActionType, MethodType, OrganizationType, SamplingFeatureGeotype, \
-    SamplingFeatureType, SiteType, AggregationStatistic
-
-
-# list views
-class VocabularyListView(ListView):
-    pass
+from cvinterface.views.base_views import *
+from cvinterface.control_vocabularies import vocabularies, vocabulary_list_view, vocabulary_list_template, \
+    vocabulary_detail_view, vocabulary_detail_template
 
 
-class ActionTypeView(VocabularyListView):
-    model = ActionType
-    template_name = 'cvinterface/vocabularies/actiontype_list.html'
+list_views = {}
+for cv_name in vocabularies:
+    vocabulary = vocabularies[cv_name]
+    view = vocabulary['list_view'] if 'list_view' in vocabulary else vocabulary_list_view
+    template = vocabulary['list_template'] if 'list_template' in vocabulary else vocabulary_list_template
+
+    list_views[cv_name] = view.as_view(vocabulary=cv_name, vocabulary_verbose=vocabulary['name'],
+        model=vocabulary['model'], template_name=template,
+    )
 
 
-class MethodTypeView(VocabularyListView):
-    model = MethodType
-    template_name = 'cvinterface/vocabularies/methodtype_list.html'
+detail_views = {}
+for cv_name in vocabularies:
+    vocabulary = vocabularies[cv_name]
+    view = vocabulary['detail_view'] if 'detail_view' in vocabulary else vocabulary_detail_view
+    template = vocabulary['detail_template'] if 'detail_template' in vocabulary else vocabulary_detail_template
+
+    detail_views[cv_name] = view.as_view(vocabulary=cv_name, vocabulary_verbose=vocabulary['name'],
+        model=vocabulary['model'], template_name=template,
+    )
 
 
-class OrganizationTypeView(VocabularyListView):
-    model = OrganizationType
-    template_name = 'cvinterface/vocabularies/organizationtype_list.html'
+class VocabulariesView(ListView):
+    queryset = []
+    template_name = 'cvinterface/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(VocabulariesView, self).get_context_data(**kwargs)
+        context['vocabulary_views'] = [{'name': vocabularies[vocabulary_name]['name'], 'url': reverse(vocabulary_name)}
+                                       for vocabulary_name in vocabularies]
 
-class SamplingFeatureGeotypeView(VocabularyListView):
-    model = SamplingFeatureGeotype
-    template_name = 'cvinterface/vocabularies/samplingfeaturegeotype_list.html'
-
-
-class SamplingFeatureTypeView(VocabularyListView):
-    model = SamplingFeatureType
-    template_name = 'cvinterface/vocabularies/samplingfeaturetype_list.html'
-
-
-class SiteTypeView(VocabularyListView):
-    model = SiteType
-    template_name = 'cvinterface/vocabularies/sitetype_list.html'
-
-# Denver
-class AggregationStatisticView(VocabularyListView):
-    model = AggregationStatistic
-    template_name = 'cvinterface/vocabularies/aggregationstatistic_list.html'
-
-
-action_type_view = ActionTypeView.as_view()
-method_type_view = MethodTypeView.as_view()
-organization_type_view = OrganizationTypeView.as_view()
-sampling_feature_geotype_view = SamplingFeatureGeotypeView.as_view()
-sampling_feature_type_view = SamplingFeatureTypeView.as_view()
-site_type_view = SiteTypeView.as_view()
-# Denver
-aggregation_statistic_view = AggregationStatisticView.as_view()
-
-view_functions = {ActionTypeView: action_type_view, MethodTypeView: method_type_view,
-                  OrganizationTypeView: organization_type_view,
-                  SamplingFeatureGeotypeView: sampling_feature_geotype_view,
-                  SamplingFeatureTypeView: sampling_feature_type_view, SiteTypeView: site_type_view,
-		  AggregationStatisticView: aggregation_statistic_view}
-
-
-# Detail Views
-class ActionTypeDetailView(DetailView):
-    model = ActionType
-    template_name = 'cvinterface/vocabularies/actiontype_detail.html'
-
-
-class MethodTypeDetailView(DetailView):
-    model = MethodType
-    template_name = 'cvinterface/vocabularies/methodtype_detail.html'
-
-
-class OrganizationTypeDetailView(DetailView):
-    model = OrganizationType
-    template_name = 'cvinterface/vocabularies/organizationtype_detail.html'
-
-
-class SamplingFeatureGeotypeDetailView(DetailView):
-    model = SamplingFeatureGeotype
-    template_name = 'cvinterface/vocabularies/samplingfeaturegeotype_detail.html'
-
-
-class SamplingFeatureTypeDetailView(DetailView):
-    model = SamplingFeatureType
-    template_name = 'cvinterface/vocabularies/samplingfeaturetype_detail.html'
-
-
-class SiteTypeDetailView(DetailView):
-    model = SiteType
-    template_name = 'cvinterface/vocabularies/sitetype_detail.html'
-
-# Denver
-class AggregationStatisticView(DetailView):
-    model = AggregationStatistic
-    template_name = 'cvinterface/vocabularies/aggregationstatistic_detail.html'
+        return context

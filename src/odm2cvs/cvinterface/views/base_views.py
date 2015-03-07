@@ -1,34 +1,84 @@
-from inspect import getmembers, isclass
-
-from django.views.generic import ListView
-from django.core.urlresolvers import reverse
-
-import vocabulary_views
-import cvservices.models
-from vocabulary_views import VocabularyListView, view_functions
-from cvservices.models import ControlVocabulary, ControlVocabularyRequest
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
+from django.core.urlresolvers import reverse_lazy
 
 
-class HomeView(ListView):
-    queryset = []
-    template_name = 'cvinterface/index.html'
+# Vocabulary Basic Views
+class DefaultVocabularyListView(ListView):
+    vocabulary = None
+    vocabulary_verbose = None
+
+    def __init__(self, **kwargs):
+        self.vocabulary = kwargs['vocabulary']
+        self.vocabulary_verbose = kwargs['vocabulary_verbose']
+        super(DefaultVocabularyListView, self).__init__(**kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        models = [(obj.__name__, obj._meta.verbose_name)
-                  for member, obj in getmembers(cvservices.models, isclass)
-                  if issubclass(obj, ControlVocabulary)
-                  and not issubclass(obj, ControlVocabularyRequest)
-                  and not obj._meta.abstract]
-
-        views = [(obj.model.__name__, obj)
-                 for view, obj in getmembers(vocabulary_views, isclass)
-                 if issubclass(obj, VocabularyListView)
-                 and obj is not VocabularyListView]
-
-        context['vocabularies'] = [{'name': verbose_name, 'url': reverse(view_functions[view]), 'model_name': model_name}
-                                   for class_name, verbose_name in models
-                                   for model_name, view in views
-                                   if class_name == model_name]
-
+        context = super(DefaultVocabularyListView, self).get_context_data(**kwargs)
+        context['vocabulary_verbose'] = self.vocabulary_verbose
+        context['create_url'] = self.vocabulary + '_form'
+        context['detail_url'] = self.vocabulary + '_detail'
         return context
+
+
+class DefaultVocabularyDetailView(DetailView):
+    vocabulary = None
+    vocabulary_verbose = None
+
+    def __init__(self, **kwargs):
+        self.vocabulary = kwargs['vocabulary']
+        self.vocabulary_verbose = kwargs['vocabulary_verbose']
+        super(DefaultVocabularyDetailView, self).__init__(**kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(DefaultVocabularyDetailView, self).get_context_data(**kwargs)
+        context['vocabulary_verbose'] = self.vocabulary_verbose
+        return context
+
+
+# Request Basic Views
+class DefaultRequestListView(ListView):
+    request = None
+    vocabulary = None
+    request_verbose = None
+
+    def __init__(self, **kwargs):
+        self.request = kwargs['request']
+        self.vocabulary = kwargs['vocabulary']
+        self.request_verbose = kwargs['request_verbose']
+        super(DefaultRequestListView, self).__init__(**kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(DefaultRequestListView, self).get_context_data(**kwargs)
+        context['request'] = self.request
+        context['request_verbose'] = self.request_verbose
+        context['update_url'] = self.vocabulary + '_update'
+        return context
+
+
+class DefaultRequestCreateView(CreateView):
+    request = None
+    vocabulary = None
+    request_verbose = None
+    success_view = 'request_success'
+    fields = ['term', 'name', 'definition', 'category', 'provenance', 'provenance_uri',
+              'note', 'request_notes', 'submitter_name', 'submitter_email', 'request_reason']
+
+    def __init__(self, **kwargs):
+        self.request = kwargs['request']
+        self.vocabulary = kwargs['vocabulary']
+        self.request_verbose = kwargs['request_verbose']
+        self.success_url = reverse_lazy(self.success_view, kwargs={'vocabulary': self.vocabulary})
+        super(DefaultRequestCreateView, self).__init__(**kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(DefaultRequestCreateView, self).get_context_data(**kwargs)
+        context['request'] = self.request
+        context['request_verbose'] = self.request_verbose
+        context['vocabulary'] = self.vocabulary
+        context['success_view'] = 'request_success'
+        return context
+
+
+class ActionTypeRequestCreateView(DefaultRequestCreateView):
+    fields = DefaultRequestCreateView.fields + ['produces_result']

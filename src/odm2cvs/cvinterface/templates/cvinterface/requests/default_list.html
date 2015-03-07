@@ -12,7 +12,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <h2 class="divTitle">{% block vocabulary_type %}{% endblock %} Vocabulary Concept Requests</h2>
+        <h2 class="divTitle">{{ request_verbose }}</h2>
 
         <section id="requests">
             {% block data_list %}
@@ -28,7 +28,7 @@
                     <tbody>
                     {% for request in object_list %}
                         <tr>
-                            <td><a href="{% block term_url %}{% endblock %}">{{ request.term }}</a></td>
+                            <td><a href="">{{ request.term }}</a></td>
                             <td>{{ request.definition }}</td>
                             <td>{{ request.date_submitted }}</td>
                             <td>{{ request.submitter_name }}</td>

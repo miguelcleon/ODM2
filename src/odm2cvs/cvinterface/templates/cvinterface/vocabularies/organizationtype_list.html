@@ -1,8 +1,0 @@
-{% extends 'cvinterface/vocabulary_list.html' %}
-{% block term_url %}
-    {% url 'organizationtype_detail' concept.term %}
-{% endblock %}
-{% block create_request %}
-    {% url 'organizationtype_create' %}
-{% endblock %}
-{% block vocabulary_type %}Organization Type{% endblock %}

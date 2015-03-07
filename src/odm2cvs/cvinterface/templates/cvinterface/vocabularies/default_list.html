@@ -17,10 +17,10 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <a id="btnAddNew" href="{% block create_request %}{% endblock %}" class="btn btn-default btn-dock-down">New</a>
-        <h2 class="divTitle">{% block vocabulary_type %}{% endblock %} Vocabulary Concepts</h2>
+        <a id="btnAddNew" href="{% url create_url %}" class="btn btn-default btn-dock-down">New</a>
+        <h2 class="divTitle">{{ vocabulary_verbose }} Vocabulary Concepts</h2>
         <div>
-            {% block data_list %}
+            {% block data_table %}
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
@@ -31,7 +31,7 @@
                     <tbody>
                     {% for concept in object_list %}
                         <tr>
-                            <td><a href="{% block term_url %}{% endblock %}">{{ concept.term }}</a></td>
+                            <td><a href="{% url detail_url concept.term %}">{{ concept.term }}</a></td>
                             <td>{{ concept.definition }}</td>
                         </tr>
                     {% endfor %}

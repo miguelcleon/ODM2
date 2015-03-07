@@ -5,8 +5,8 @@
     <div class="col-lg-6">
         <div class="well add-new-dialog">
             <fieldset>
-                <legend>New {% block vocabulary_type %}{% endblock %} Concept Request</legend>
-                <form action="{% block success_url %}{% endblock %}" method="post">{% csrf_token %}
+                <legend>New {{ request_verbose }}</legend>
+                <form action="" method="post">{% csrf_token %}
                     {% for field in form %}
                         {{ field.errors }}
                         <label class="col-lg-3 control-label" for={{ field.id_for_label }}>{{ field.label }}</label>

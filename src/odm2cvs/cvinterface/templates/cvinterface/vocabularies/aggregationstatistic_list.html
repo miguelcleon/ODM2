@@ -1,8 +1,0 @@
-{% extends 'cvinterface/vocabulary_list.html' %}
-{% block term_url %}
-    {% url 'aggregationstatistic_detail' concept.term %}
-{% endblock %}
-{% block create_request %}
-    {% url 'aggregationstatistic_create' %}
-{% endblock %}
-{% block vocabulary_type %}Aggregation Statistic Controlled Vocabulary{% endblock %}

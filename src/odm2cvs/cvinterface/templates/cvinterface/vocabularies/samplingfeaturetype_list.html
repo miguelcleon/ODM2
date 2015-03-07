@@ -1,8 +1,0 @@
-{% extends 'cvinterface/vocabulary_list.html' %}
-{% block term_url %}
-    {% url 'samplingfeaturetype_detail' concept.term %}
-{% endblock %}
-{% block create_request %}
-    {% url 'samplingfeaturetype_create' %}
-{% endblock %}
-{% block vocabulary_type %}Sampling Feature Type{% endblock %}
