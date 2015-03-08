@@ -13,6 +13,7 @@ class ControlVocabulary(models.Model):
     provenance = models.TextField(blank=True)
     provenance_uri = models.URLField(db_column='provenanceUri', blank=True)
     note = models.TextField(blank=True)
+    version = models.IntegerField()
 
     class Meta:
         abstract = True
@@ -32,6 +33,7 @@ class ControlVocabularyRequest(models.Model):
     submitter_name = models.CharField(max_length=255, db_column='submitterName')
     submitter_email = models.CharField(max_length=255, db_column='submitterEmail', blank=True)
     request_reason = models.CharField(max_length=255, db_column='requestReason')
+    original_request = models.ForeignKey('self')
 
     class Meta:
         abstract = True
