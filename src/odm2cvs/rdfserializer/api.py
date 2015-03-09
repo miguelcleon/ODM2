@@ -36,7 +36,7 @@ class RdfSerializer(Serializer):
     formats = ['json', 'skos']
     content_types = {
         'json': 'application/json',
-        'skos': 'text/plain'
+        'skos': 'application/rdf+xml'
         # 'skos': 'application/rdf+xml'
     }
 
