@@ -33,13 +33,14 @@
     <h2 class="page-header">Controlled Vocabularies</h2>
 
     {% for vocabulary in vocabulary_views %}
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="thumbnail">
                 <div class="caption">
                     <h3>{{ vocabulary.name }}</h3>
+                    <p>{{ vocabulary.definition }}</p>
                     <p><a href="{{ vocabulary.url }}" class="btn btn-default" role="button">View</a></p>
                 </div>
-            </div>
+           </div>
         </div>
     {% endfor %}
 

@@ -21,7 +21,6 @@ urlpatterns = patterns('',
 # cv list views
 for cv_name in list_views:
     view = list_views[cv_name]
-
     urlpatterns += patterns('',
         url(r'^' + settings.SITE_URL + cv_name + '/$', view, name=cv_name),
     )
@@ -29,7 +28,6 @@ for cv_name in list_views:
 # cv detail views
 for cv_name in detail_views:
     view = detail_views[cv_name]
-
     urlpatterns += patterns('',
         url(r'^' + settings.SITE_URL + cv_name + '/(?P<pk>\w+)/$', view, name=cv_name + '_detail'),
     )
