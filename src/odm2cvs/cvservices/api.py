@@ -17,11 +17,11 @@ from models import ActionType, ActionTypeRequest, MethodType, MethodTypeRequest,
 
 
 class ActionTypeResource(ModelRdfResource):
-    scheme = 'actionTypeCV'
+    scheme = 'actionType'
 
     class Meta:
         queryset = ActionType.objects.using('control_vocabularies').all()
-        resource_name = 'actiontypecv'
+        resource_name = 'actiontype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -29,31 +29,31 @@ class ActionTypeResource(ModelRdfResource):
 class ActionTypeRequestResource(ModelResource):
     class Meta:
         queryset = ActionTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'actiontypecvrequest'
+        resource_name = 'actiontyperequest'
         max_limit = 0
 
 
 class MethodTypeResource(ModelRdfResource):
-    scheme = 'methodTypeCV'
+    scheme = 'methodType'
 
     class Meta:
         queryset = MethodType.objects.using('control_vocabularies').all()
-        resource_name = 'methodtypecv'
+        resource_name = 'methodtype'
         max_limit = 0
         serializer = RdfSerializer()
 
 class MethodTypeRequestResource(ModelResource):
     class Meta:
         queryset = MethodTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'methodtypecvrequest'
+        resource_name = 'methodtyperequest'
         max_limit = 0
 
 class OrganizationTypeResource(ModelRdfResource):
-    scheme = 'organizationTypeCV'
+    scheme = 'organizationType'
 
     class Meta:
         queryset = OrganizationType.objects.using('control_vocabularies').all()
-        resource_name = 'organizationtypecv'
+        resource_name = 'organizationtype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -61,16 +61,16 @@ class OrganizationTypeResource(ModelRdfResource):
 class OrganizationTypeRequestResource(ModelResource):
     class Meta:
         queryset = OrganizationTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'organizationtypecvrequest'
+        resource_name = 'organizationtyperequest'
         max_limit = 0
 
 
 class SamplingFeatureGeotypeResource(ModelRdfResource):
-    scheme = 'samplingFeatureGeotypeCV'
+    scheme = 'samplingFeatureGeotype'
 
     class Meta:
         queryset = SamplingFeatureGeotype.objects.using('control_vocabularies').all()
-        resource_name = 'samplingfeaturegeotypecv'
+        resource_name = 'samplingfeaturegeotype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -78,16 +78,16 @@ class SamplingFeatureGeotypeResource(ModelRdfResource):
 class SamplingFeatureGeotypeRequestResource(ModelResource):
     class Meta:
         queryset = SamplingFeatureGeotypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'samplingfeaturegeotypecvrequest'
+        resource_name = 'samplingfeaturegeotyperequest'
         max_limit = 0
 
 
 class SamplingFeatureTypeResource(ModelRdfResource):
-    scheme = 'samplingFeatureTypeCV'
+    scheme = 'samplingFeatureType'
 
     class Meta:
         queryset = SamplingFeatureType.objects.using('control_vocabularies').all()
-        resource_name = 'samplingfeaturetypecv'
+        resource_name = 'samplingfeaturetype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -95,16 +95,16 @@ class SamplingFeatureTypeResource(ModelRdfResource):
 class SamplingFeatureTypeRequestResource(ModelResource):
     class Meta:
         queryset = SamplingFeatureTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'samplingfeaturetypecvrequest'
+        resource_name = 'samplingfeaturetyperequest'
         max_limit = 0
 
 
 class SiteTypeResource(ModelRdfResource):
-    scheme = 'siteTypeCV'
+    scheme = 'siteType'
 
     class Meta:
         queryset = SiteType.objects.using('control_vocabularies').all()
-        resource_name = 'sitetypecv'
+        resource_name = 'sitetype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -112,16 +112,16 @@ class SiteTypeResource(ModelRdfResource):
 class SiteTypeRequestResource(ModelResource):
     class Meta:
         queryset = SiteTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'sitetypecvrequests'
+        resource_name = 'sitetyperequests'
         max_limit = 0
 
 # Denver
 class AggregationStatisticResource(ModelRdfResource):
-    scheme = 'aggregationStatisticCV'
+    scheme = 'aggregationStatistic'
 
     class Meta:
         queryset = AggregationStatistic.objects.using('control_vocabularies').all()
-        resource_name = 'aggregationstatisticcv'
+        resource_name = 'aggregationstatistic'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -129,16 +129,16 @@ class AggregationStatisticResource(ModelRdfResource):
 class AggregationStatisticRequestResource(ModelResource):
     class Meta:
         queryset = AggregationStatisticRequest.objects.using('control_vocabularies').all()
-        resource_name = 'aggregationstatisticcvrequest'
+        resource_name = 'aggregationstatisticrequest'
         max_limit = 0
 
 
 class AnnotationTypeResource(ModelRdfResource):
-    scheme = 'annotationTypeCV'
+    scheme = 'annotationType'
 
     class Meta:
         queryset = AggregationStatistic.objects.using('control_vocabularies').all()
-        resource_name = 'annotationtypecv'
+        resource_name = 'annotationtype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -146,16 +146,16 @@ class AnnotationTypeResource(ModelRdfResource):
 class AnnotationTypeRequestResource(ModelResource):
     class Meta:
         queryset = AnnotationTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'annotationtypecvrequest'
+        resource_name = 'annotationtyperequest'
         max_limit = 0
 
 
 class CensorCodeResource(ModelRdfResource):
-    scheme = 'censorCodeCV'
+    scheme = 'censorCode'
 
     class Meta:
         queryset = CensorCode.objects.using('control_vocabularies').all()
-        resource_name = 'censorcodecv'
+        resource_name = 'censorcode'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -163,16 +163,16 @@ class CensorCodeResource(ModelRdfResource):
 class CensorCodeRequestResource(ModelResource):
     class Meta:
         queryset = CensorCodeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'censorcodecvrequest'
+        resource_name = 'censorcoderequest'
         max_limit = 0
 
 
 class DatasetTypeResource(ModelRdfResource):
-    scheme = 'datasetTypeCV'
+    scheme = 'datasetType'
 
     class Meta:
         queryset = DatasetType.objects.using('control_vocabularies').all()
-        resource_name = 'datasettypecv'
+        resource_name = 'datasettype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -180,16 +180,16 @@ class DatasetTypeResource(ModelRdfResource):
 class DatasetTypeRequestResource(ModelResource):
     class Meta:
         queryset = DatasetTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'datasettypecvrequest'
+        resource_name = 'datasettyperequest'
         max_limit = 0
 
 
 class DirectiveTypeResource(ModelRdfResource):
-    scheme = 'directiveTypeCV'
+    scheme = 'directiveType'
 
     class Meta:
         queryset = DirectiveType.objects.using('control_vocabularies').all()
-        resource_name = 'directivetypecv'
+        resource_name = 'directivetype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -197,16 +197,16 @@ class DirectiveTypeResource(ModelRdfResource):
 class DirectiveTypeRequestResource(ModelResource):
     class Meta:
         queryset = DirectiveTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'directivetypecvrequest'
+        resource_name = 'directivetyperequest'
         max_limit = 0
 
 
 class ElevationDatumResource(ModelRdfResource):
-    scheme = 'elevationDatumCV'
+    scheme = 'elevationDatum'
 
     class Meta:
         queryset = ElevationDatum.objects.using('control_vocabularies').all()
-        resource_name = 'elevationdatumcv'
+        resource_name = 'elevationdatum'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -214,16 +214,16 @@ class ElevationDatumResource(ModelRdfResource):
 class ElevationDatumRequestResource(ModelResource):
     class Meta:
         queryset = ElevationDatumRequest.objects.using('control_vocabularies').all()
-        resource_name = 'elevationdatumcvrequest'
+        resource_name = 'elevationdatumrequest'
         max_limit = 0
 
 
 class EquipmentTypeResource(ModelRdfResource):
-    scheme = 'equipmentTypeCV'
+    scheme = 'equipmentType'
 
     class Meta:
         queryset = EquipmentType.objects.using('control_vocabularies').all()
-        resource_name = 'equipmenttypecv'
+        resource_name = 'equipmenttype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -231,16 +231,16 @@ class EquipmentTypeResource(ModelRdfResource):
 class EquipmentTypeRequestResource(ModelResource):
     class Meta:
         queryset = EquipmentTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'equipmenttypecvrequest'
+        resource_name = 'equipmenttyperequest'
         max_limit = 0
 
 
 class PropertyDataTypeResource(ModelRdfResource):
-    scheme = 'propertyDataTypeCV'
+    scheme = 'propertyDataType'
 
     class Meta:
         queryset = PropertyDataType.objects.using('control_vocabularies').all()
-        resource_name = 'propertydatatypecv'
+        resource_name = 'propertydatatype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -248,16 +248,16 @@ class PropertyDataTypeResource(ModelRdfResource):
 class PropertyDataTypeRequestResource(ModelResource):
     class Meta:
         queryset = PropertyDataTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'propertydatatypecvrequest'
+        resource_name = 'propertydatatyperequest'
         max_limit = 0
 
 
 class QualityCodeResource(ModelRdfResource):
-    scheme = 'qualityCodeCV'
+    scheme = 'qualityCode'
 
     class Meta:
         queryset = QualityCode.objects.using('control_vocabularies').all()
-        resource_name = 'qualitycodecv'
+        resource_name = 'qualitycode'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -265,16 +265,16 @@ class QualityCodeResource(ModelRdfResource):
 class QualityCodeRequestResource(ModelResource):
     class Meta:
         queryset = QualityCodeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'qualitycodecvrequest'
+        resource_name = 'qualitycoderequest'
         max_limit = 0
 
 
 class ReferenceMaterialMediumResource(ModelRdfResource):
-    scheme = 'referenceMaterialMediumCV'
+    scheme = 'referenceMaterialMedium'
 
     class Meta:
         queryset = ReferenceMaterialMedium.objects.using('control_vocabularies').all()
-        resource_name = 'referencematerialmediumcv'
+        resource_name = 'referencematerialmedium'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -282,16 +282,16 @@ class ReferenceMaterialMediumResource(ModelRdfResource):
 class ReferenceMaterialMediumRequestResource(ModelResource):
     class Meta:
         queryset = ReferenceMaterialMediumRequest.objects.using('control_vocabularies').all()
-        resource_name = 'referencematerialmediumcvrequest'
+        resource_name = 'referencematerialmediumrequest'
         max_limit = 0
 
 
 class ResultTypeResource(ModelRdfResource):
-    scheme = 'resultTypeCV'
+    scheme = 'resultType'
 
     class Meta:
         queryset = ResultType.objects.using('control_vocabularies').all()
-        resource_name = 'resulttypecv'
+        resource_name = 'resulttype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -299,16 +299,16 @@ class ResultTypeResource(ModelRdfResource):
 class ResultTypeRequestResource(ModelResource):
     class Meta:
         queryset = ResultTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'resulttypecvrequest'
+        resource_name = 'resulttyperequest'
         max_limit = 0
 
 
 class SampledMediumResource(ModelRdfResource):
-    scheme = 'sampledMediumCV'
+    scheme = 'sampledMedium'
 
     class Meta:
         queryset = SampledMedium.objects.using('control_vocabularies').all()
-        resource_name = 'sampledmediumcv'
+        resource_name = 'sampledmedium'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -316,16 +316,16 @@ class SampledMediumResource(ModelRdfResource):
 class SampledMediumRequestResource(ModelResource):
     class Meta:
         queryset = SampledMediumRequest.objects.using('control_vocabularies').all()
-        resource_name = 'sampledmediumcvrequest'
+        resource_name = 'sampledmediumrequest'
         max_limit = 0
 
 
 class SpatialOffsetTypeResource(ModelRdfResource):
-    scheme = 'spatialOffsetTypeCV'
+    scheme = 'spatialOffsetType'
 
     class Meta:
         queryset = SpatialOffsetType.objects.using('control_vocabularies').all()
-        resource_name = 'spatialoffsettypecv'
+        resource_name = 'spatialoffsettype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -333,16 +333,16 @@ class SpatialOffsetTypeResource(ModelRdfResource):
 class SpatialOffsetTypeRequestResource(ModelResource):
     class Meta:
         queryset = SpatialOffsetTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'spatialoffsettypecvrequest'
+        resource_name = 'spatialoffsettyperequest'
         max_limit = 0
 
 
 class SpeciationResource(ModelRdfResource):
-    scheme = 'speciationCV'
+    scheme = 'speciation'
 
     class Meta:
         queryset = Speciation.objects.using('control_vocabularies').all()
-        resource_name = 'speciationcv'
+        resource_name = 'speciation'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -350,16 +350,16 @@ class SpeciationResource(ModelRdfResource):
 class SpeciationRequestResource(ModelResource):
     class Meta:
         queryset = SpeciationRequest.objects.using('control_vocabularies').all()
-        resource_name = 'speciationcvrequest'
+        resource_name = 'speciationrequest'
         max_limit = 0
 
 
 class SpecimenMediumResource(ModelRdfResource):
-    scheme = 'specimenMediumCV'
+    scheme = 'specimenMedium'
 
     class Meta:
         queryset = SpecimenMedium.objects.using('control_vocabularies').all()
-        resource_name = 'specimenmediumcv'
+        resource_name = 'specimenmedium'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -367,16 +367,16 @@ class SpecimenMediumResource(ModelRdfResource):
 class SpecimenMediumRequestResource(ModelResource):
     class Meta:
         queryset = SpecimenMediumRequest.objects.using('control_vocabularies').all()
-        resource_name = 'specimenmediumcvrequest'
+        resource_name = 'specimenmediumrequest'
         max_limit = 0
 
 
 class SpecimenTypeResource(ModelRdfResource):
-    scheme = 'specimenTypeCV'
+    scheme = 'specimenType'
 
     class Meta:
         queryset = SpecimenType.objects.using('control_vocabularies').all()
-        resource_name = 'specimentypecv'
+        resource_name = 'specimentype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -384,16 +384,16 @@ class SpecimenTypeResource(ModelRdfResource):
 class SpecimenTypeRequestResource(ModelResource):
     class Meta:
         queryset = SpecimenTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'specimentypecvrequest'
+        resource_name = 'specimentyperequest'
         max_limit = 0
 
 
 class StatusResource(ModelRdfResource):
-    scheme = 'statusCV'
+    scheme = 'status'
 
     class Meta:
         queryset = Status.objects.using('control_vocabularies').all()
-        resource_name = 'statuscv'
+        resource_name = 'status'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -401,16 +401,16 @@ class StatusResource(ModelRdfResource):
 class StatusRequestResource(ModelResource):
     class Meta:
         queryset = StatusRequest.objects.using('control_vocabularies').all()
-        resource_name = 'statuscvrequest'
+        resource_name = 'statusrequest'
         max_limit = 0
 
 
 class TaxonomicClassifierTypeResource(ModelRdfResource):
-    scheme = 'taxonomicClassifierTypeCV'
+    scheme = 'taxonomicClassifierType'
 
     class Meta:
         queryset = TaxonomicClassifierType.objects.using('control_vocabularies').all()
-        resource_name = 'taxonomicclassifiertypecv'
+        resource_name = 'taxonomicclassifiertype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -418,16 +418,16 @@ class TaxonomicClassifierTypeResource(ModelRdfResource):
 class TaxonomicClassifierTypeRequestResource(ModelResource):
     class Meta:
         queryset = TaxonomicClassifierTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'taxonomicclassifiertypecvrequest'
+        resource_name = 'taxonomicclassifiertyperequest'
         max_limit = 0
 
 
 class VariableNameResource(ModelRdfResource):
-    scheme = 'variableNameCV'
+    scheme = 'variableName'
 
     class Meta:
         queryset = VariableName.objects.using('control_vocabularies').all()
-        resource_name = 'variablenamecv'
+        resource_name = 'variablename'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -435,16 +435,16 @@ class VariableNameResource(ModelRdfResource):
 class VariableNameRequestResource(ModelResource):
     class Meta:
         queryset = VariableNameRequest.objects.using('control_vocabularies').all()
-        resource_name = 'variablenamecvrequest'
+        resource_name = 'variablenamerequest'
         max_limit = 0
 
 
 class VariableTypeResource(ModelRdfResource):
-    scheme = 'variableTypeCV'
+    scheme = 'variableType'
 
     class Meta:
         queryset = VariableType.objects.using('control_vocabularies').all()
-        resource_name = 'variabletypecv'
+        resource_name = 'variabletype'
         max_limit = 0
         serializer = RdfSerializer()
 
@@ -452,7 +452,7 @@ class VariableTypeResource(ModelRdfResource):
 class VariableTypeRequestResource(ModelResource):
     class Meta:
         queryset = VariableTypeRequest.objects.using('control_vocabularies').all()
-        resource_name = 'variabletypecvrequest'
+        resource_name = 'variabletyperequest'
         max_limit = 0
 
 

@@ -10,8 +10,7 @@ for cv_name in vocabularies:
     vocabulary = vocabularies[cv_name]
     view = vocabulary['list_view'] if 'list_view' in vocabulary else vocabulary_list_view
     template = vocabulary['list_template'] if 'list_template' in vocabulary else vocabulary_list_template
-
-    list_views[cv_name] = view.as_view(vocabulary=cv_name, vocabulary_verbose=vocabulary['name'],
+    list_views[cv_name] = view.as_view(vocabulary=cv_name, vocabulary_def=vocabulary['definition'], vocabulary_verbose=vocabulary['name'],
         model=vocabulary['model'], template_name=template,
     )
 
@@ -33,7 +32,8 @@ class VocabulariesView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(VocabulariesView, self).get_context_data(**kwargs)
-        context['vocabulary_views'] = [{'name': vocabularies[vocabulary_name]['name'], 'url': reverse(vocabulary_name)}
+        print context
+        context['vocabulary_views'] = [{'definition': vocabularies[vocabulary_name]['definition'],'name': vocabularies[vocabulary_name]['name'], 'url': reverse(vocabulary_name)}
                                        for vocabulary_name in vocabularies]
 
         return context

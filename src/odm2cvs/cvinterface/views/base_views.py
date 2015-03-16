@@ -2,15 +2,18 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
 
+from rdfserializer.api import *
 
 # Vocabulary Basic Views
 class DefaultVocabularyListView(ListView):
     vocabulary = None
     vocabulary_verbose = None
+    vocabulary_def = None
 
     def __init__(self, **kwargs):
         self.vocabulary = kwargs['vocabulary']
         self.vocabulary_verbose = kwargs['vocabulary_verbose']
+        self.vocabulary_def = kwargs['vocabulary_def']
         super(DefaultVocabularyListView, self).__init__(**kwargs)
 
     def get_context_data(self, **kwargs):
@@ -18,6 +21,8 @@ class DefaultVocabularyListView(ListView):
         context['vocabulary_verbose'] = self.vocabulary_verbose
         context['create_url'] = self.vocabulary + '_form'
         context['detail_url'] = self.vocabulary + '_detail'
+        #context['vocabulary_def'] = self.vocabulary_def
+        context['vocabulary'] = self.vocabulary
         return context
 
 
@@ -33,6 +38,7 @@ class DefaultVocabularyDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DefaultVocabularyDetailView, self).get_context_data(**kwargs)
         context['vocabulary_verbose'] = self.vocabulary_verbose
+        context['vocabulary'] = self.vocabulary
         return context
 
 
@@ -82,3 +88,6 @@ class DefaultRequestCreateView(CreateView):
 
 class ActionTypeRequestCreateView(DefaultRequestCreateView):
     fields = DefaultRequestCreateView.fields + ['produces_result']
+
+class SpatialOffsetTypeCreateView(DefaultRequestCreateView):
+    fields = DefaultRequestCreateView.fields + ['offset1', 'offset2', 'offset3']

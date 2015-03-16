@@ -16,7 +16,7 @@ class ControlVocabulary(models.Model):
 
     class Meta:
         abstract = True
-
+        ordering = ["-name"]
 
 class ControlVocabularyRequest(models.Model):
     STATUS_CHOICES = (
@@ -49,9 +49,12 @@ class AbstractActionType(models.Model):
 
 
 class AbstractSpatialOffsetType(models.Model):
-    offset1 = models.TextField(blank=True)
-    offset2 = models.TextField(blank=True)
-    offset3 = models.TextField(blank=True)
+    offset1 = models.TextField(db_column='offset1', blank=True)
+    offset2 = models.TextField(db_column='offset2', blank=True)
+    offset3 = models.TextField(db_column='offset3', blank=True)
+
+    class Meta:
+        abstract = True
 
 
 class ActionType(ControlVocabulary, AbstractActionType):
@@ -60,13 +63,11 @@ class ActionType(ControlVocabulary, AbstractActionType):
         db_table = 'ActionTypeCV'
         verbose_name = 'Action Type'
 
-
 class ActionTypeRequest(ControlVocabularyRequest, ControlVocabulary, AbstractActionType):
     class Meta:
         managed = False
         db_table = 'ActionTypeCVRequests'
         verbose_name = 'Action Type Request'
-
 
 class MethodType(ControlVocabulary):
     class Meta:
