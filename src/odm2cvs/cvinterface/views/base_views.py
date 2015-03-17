@@ -69,6 +69,7 @@ class DefaultRequestListView(ListView):
 class DefaultRequestUpdateView(UpdateView):
     request = None
     vocabulary = None
+    vocabulary_model = None
     request_verbose = None
     success_view = 'request_success'
     accept_button = 'request_accept'
@@ -80,6 +81,7 @@ class DefaultRequestUpdateView(UpdateView):
         super(DefaultRequestUpdateView, self).__init__(**kwargs)
         self.request = kwargs['request']
         self.vocabulary = kwargs['vocabulary']
+        self.vocabulary_model = kwargs['vocabulary_model']
         self.request_verbose = kwargs['request_verbose']
         self.success_url = reverse_lazy(self.success_view, kwargs={'vocabulary': self.vocabulary})
         self.fields = [field.name for field in self.model._meta.fields if field.name not in self.exclude]
@@ -109,23 +111,41 @@ class DefaultRequestUpdateView(UpdateView):
             return self.reject_request(form)
 
     def accept_request(self, form):
-        pass
-        # for field in form.changed_data:
+        vocabulary_filter = self.vocabulary_model.objects.filter(pk=form.instance.pk)
+        exists = vocabulary_filter.count() is not 0
+        concept = vocabulary_filter.pop() if exists else self.vocabulary_model()
 
-    def reject_request(self, form):
-        instance_pk = form.instance.pk
-        form.instance.status = ControlVocabularyRequest.REJECTED
-        form.instance.date_status_changed = timezone.now()
-        form.instance.save()
+        concept_fields = [concept_field.name for concept_field in concept._meta.fields]
+        request_fields = [request_field.name for request_field in form.instance._meta.fields]
 
-        new_request_id = uuid4()
-        form.instance.pk = new_request_id
-        form.instance.id = new_request_id
-        form.instance.original_request = self.model.objects.get(pk=instance_pk)
-        form.instance.save()
+        for field in concept_fields:
+            if field in request_fields:
+                concept.__setattr__(field, form.instance.__getattribute__(field))
+
+        concept.save()
+        self.save_and_duplicate_request(form, ControlVocabularyRequest.ACCEPTED)
 
         return super(DefaultRequestUpdateView, self).form_valid(form)
 
+    def reject_request(self, form):
+        self.save_and_duplicate_request(form, ControlVocabularyRequest.REJECTED)
+        return super(DefaultRequestUpdateView, self).form_valid(form)
+
+    def save_and_duplicate_request(self, form, status):
+        new_request_id = uuid4()
+        current_time = timezone.now()
+
+        old_instance = self.model.objects.get(pk=form.instance.pk)
+        old_instance.status = status
+        old_instance.date_status_changed = current_time
+        old_instance.save()
+
+        form.instance.pk = new_request_id
+        form.instance.id = new_request_id
+        form.instance.status = status
+        form.instance.date_status_changed = current_time
+        form.instance.original_request = self.model.objects.get(pk=old_instance.pk)
+        form.instance.save()
 
 # TODO: use the model fields to get the list of fields and have an 'exclude' list. that way a class is not necessary to add the extra fields of a class.
 class DefaultRequestCreateView(CreateView):

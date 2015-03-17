@@ -164,142 +164,171 @@ requests = {
 
     'actiontyperequest': {
         'vocabulary': 'actiontype',
+        'vocabulary_model': ActionType,
         'name': ActionTypeRequest._meta.verbose_name,
         'model': ActionTypeRequest,
         'create_view': ActionTypeRequestCreateView,
     },
     'methodtyperequest': {
         'vocabulary': 'methodtype',
+        'vocabulary_model': MethodType,
         'name': MethodTypeRequest._meta.verbose_name,
         'model': MethodTypeRequest,
     },
     'aggregationstatisticrequest': {
         'vocabulary': 'aggregationstatistic',
+        'vocabulary_model': AggregationStatistic,
         'name': AggregationStatisticRequest._meta.verbose_name,
         'model': AggregationStatisticRequest,
     },
     'annotationtyperequest': {
         'vocabulary': 'annotationtype',
+        'vocabulary_model': AnnotationType,
         'name': AnnotationTypeRequest._meta.verbose_name,
         'model': AnnotationTypeRequest,
     },
     'censorcoderequest': {
         'vocabulary': 'censorcode',
+        'vocabulary_model': CensorCode,
         'name': CensorCodeRequest._meta.verbose_name,
         'model': CensorCodeRequest,
     },
     'datasettyperequest': {
         'vocabulary': 'datasettype',
+        'vocabulary_model': DatasetType,
         'name': DatasetTypeRequest._meta.verbose_name,
         'model': DatasetTypeRequest,
     },
     'directivetyperequest': {
         'vocabulary': 'directivetype',
+        'vocabulary_model': DirectiveType,
         'name': DirectiveTypeRequest._meta.verbose_name,
         'model': DirectiveTypeRequest,
     },
     'elevationdatumrequest': {
         'vocabulary': 'elevationdatum',
+        'vocabulary_model': ElevationDatum,
         'name': ElevationDatumRequest._meta.verbose_name,
         'model': ElevationDatumRequest,
     },
     'equipmenttyperequest': {
         'vocabulary': 'equipmenttype',
+        'vocabulary_model': EquipmentType,
         'name': EquipmentTypeRequest._meta.verbose_name,
         'model': EquipmentTypeRequest,
     },
     'methodtyperequest': {
         'vocabulary': 'methodtype',
+        'vocabulary_model': MethodType,
         'name': MethodTypeRequest._meta.verbose_name,
         'model': MethodTypeRequest,
     },
     'organizationtyperequest': {
         'vocabulary': 'organizationtype',
+        'vocabulary_model': OrganizationType,
         'name': OrganizationTypeRequest._meta.verbose_name,
         'model': OrganizationTypeRequest,
     },
     'propertydatatyperequest': {
         'vocabulary': 'propertydatatype',
+        'vocabulary_model': PropertyDataType,
         'name': PropertyDataTypeRequest._meta.verbose_name,
         'model': PropertyDataTypeRequest,
     },
     'qualitycoderequest': {
         'vocabulary': 'qualitycode',
+        'vocabulary_model': QualityCode,
         'name': QualityCodeRequest._meta.verbose_name,
         'model': QualityCodeRequest,
     },
     'referencematerialmediumrequest': {
         'vocabulary': 'referencematerialmedium',
+        'vocabulary_model': ReferenceMaterialMedium,
         'name': ReferenceMaterialMediumRequest._meta.verbose_name,
         'model': ReferenceMaterialMediumRequest,
     },
     'resulttyperequest': {
         'vocabulary': 'resulttype',
+        'vocabulary_model': ResultType,
         'name': ResultTypeRequest._meta.verbose_name,
         'model': ResultTypeRequest,
     },
     'sampledmediumrequest': {
         'vocabulary': 'sampledmedium',
+        'vocabulary_model': SampledMedium,
         'name': SampledMediumRequest._meta.verbose_name,
         'model': SampledMediumRequest,
     },
     'samplingfeaturegeotyperequest': {
         'vocabulary': 'samplingfeaturegeotype',
+        'vocabulary_model': SamplingFeatureGeotype,
         'name': SamplingFeatureGeotypeRequest._meta.verbose_name,
         'model': SamplingFeatureGeotypeRequest,
     },
     'samplingfeaturetyperequest': {
         'vocabulary': 'samplingfeaturetype',
+        'vocabulary_model': SamplingFeatureType,
         'name': SamplingFeatureTypeRequest._meta.verbose_name,
         'model': SamplingFeatureTypeRequest,
     },
     'sitetyperequest': {
         'vocabulary': 'sitetype',
+        'vocabulary_model': SiteType,
         'name': SiteTypeRequest._meta.verbose_name,
         'model': SiteTypeRequest,
     },
     'spatialoffsettyperequest': {
         'vocabulary': 'spatialoffsettype',
+        'vocabulary_model': SpatialOffsetType,
         'name': SpatialOffsetTypeRequest._meta.verbose_name,
         'model': SpatialOffsetTypeRequest,
         'create_view': SpatialOffsetTypeCreateView,
     },
     'speciationrequest': {
         'vocabulary': 'speciation',
+        'vocabulary_model': Speciation,
         'name': SpeciationRequest._meta.verbose_name,
         'model': SpeciationRequest,
     },
     'specimenmediumrequest': {
-        'vocabulary': 'speciationmedium',
+        'vocabulary': 'specimenmedium',
+        'vocabulary_model': SpecimenMedium,
         'name': SpecimenMediumRequest._meta.verbose_name,
         'model': SpecimenMediumRequest,
     },
     'specimentyperequest': {
         'vocabulary': 'specimentype',
+        'vocabulary_model': SpecimenType,
         'name': SpecimenTypeRequest._meta.verbose_name,
         'model': SpecimenTypeRequest,
     },
     'statusrequest': {
         'vocabulary': 'status',
+        'vocabulary_model': Status,
         'name': StatusRequest._meta.verbose_name,
         'model': StatusRequest,
     },
     'taxonomicclassifiertyperequest': {
         'vocabulary': 'taxonomicclassifertype',
+        'vocabulary_model': TaxonomicClassifierType,
         'name': TaxonomicClassifierTypeRequest._meta.verbose_name,
         'model': TaxonomicClassifierTypeRequest,
     },
     'variablenamerequest': {
         'vocabulary': 'variablename',
+        'vocabulary_model': VariableName,
         'name': VariableNameRequest._meta.verbose_name,
         'model': VariableNameRequest,
     },
     'variabletyperequest': {
         'vocabulary': 'variabletype',
+        'vocabulary_model': VariableType,
         'name': VariableTypeRequest._meta.verbose_name,
         'model': VariableTypeRequest,
     },
-    
+
+
+
     # TODO: add the other requests.
     # same as with the vocabularies.
     # here, for a request with extra fields, you have to write a new CreateView class in base_views.py. take actiontyperequest as an example for that.
