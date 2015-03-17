@@ -1,3 +1,4 @@
+from uuid import uuid4
 from django.utils import timezone
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
@@ -61,7 +62,7 @@ class DefaultRequestListView(ListView):
         context = super(DefaultRequestListView, self).get_context_data(**kwargs)
         context['request'] = self.request
         context['request_verbose'] = self.request_verbose
-        context['update_url'] = self.vocabulary + '_update'
+        context['update_url'] = self.vocabulary + '_update_form'
         return context
 
 
@@ -72,8 +73,8 @@ class DefaultRequestUpdateView(UpdateView):
     success_view = 'request_success'
     accept_button = 'request_accept'
     reject_button = 'request_reject'
-    exclude = ['request_id', 'status', 'original_request']
-    read_only = ['term', 'date_submitted', 'date_status_changed']
+    exclude = ['request_id', 'term', 'status', 'date_submitted', 'date_status_changed', 'original_request']
+    read_only = []
 
     def __init__(self, **kwargs):
         super(DefaultRequestUpdateView, self).__init__(**kwargs)
@@ -89,6 +90,7 @@ class DefaultRequestUpdateView(UpdateView):
         context['read_only'] = self.read_only
         context['request'] = self.request
         context['request_verbose'] = self.request_verbose
+        context['update_url'] = self.vocabulary + '_update_form'
         context['vocabulary'] = self.vocabulary
         context['success_view'] = 'request_success'
         return context
@@ -111,9 +113,17 @@ class DefaultRequestUpdateView(UpdateView):
         # for field in form.changed_data:
 
     def reject_request(self, form):
+        instance_pk = form.instance.pk
         form.instance.status = ControlVocabularyRequest.REJECTED
         form.instance.date_status_changed = timezone.now()
         form.instance.save()
+
+        new_request_id = uuid4()
+        form.instance.pk = new_request_id
+        form.instance.id = new_request_id
+        form.instance.original_request = self.model.objects.get(pk=instance_pk)
+        form.instance.save()
+
         return super(DefaultRequestUpdateView, self).form_valid(form)
 
 
@@ -144,6 +154,7 @@ class DefaultRequestCreateView(CreateView):
 
 class ActionTypeRequestCreateView(DefaultRequestCreateView):
     fields = DefaultRequestCreateView.fields + ['produces_result']
+
 
 class SpatialOffsetTypeCreateView(DefaultRequestCreateView):
     fields = DefaultRequestCreateView.fields + ['offset1', 'offset2', 'offset3']

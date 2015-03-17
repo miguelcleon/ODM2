@@ -5,7 +5,16 @@
     <div class="col-lg-6">
         <div class="well add-new-dialog">
             <fieldset>
-                <legend>{% if object.status == 'Pending' %}Update{% else %}View{% endif %} {{ request_verbose }}</legend>
+                <legend>
+                    {{ object.term }} ({{ object.status }}) - {{ request_verbose }}
+                    <span style="display:block; font-size: small">Requested on {{ object.date_submitted }}</span>
+                    <span style="display:block; font-size: small">Last modified on {{ object.date_status_changed }}</span>
+                    {% if object.original_request_id %}
+                        <span style="display:block; font-size: small">
+                            <a href="{% url update_url object.original_request_id %}">Original Request</a>
+                        </span>
+                    {% endif %}
+                </legend>
                 <form action="" method="post">{% csrf_token %}
                     {% for field in form %}
                         {{ field.errors }}

@@ -13,7 +13,7 @@ class ControlVocabulary(models.Model):
     category = models.CharField(max_length=255)
     provenance = models.TextField(blank=True)
     provenance_uri = models.URLField(db_column='provenanceUri', blank=True)
-    note = models.TextField(blank=True, verbose_name='Reason for request')
+    note = models.TextField(blank=True)
 
     class Meta:
         abstract = True

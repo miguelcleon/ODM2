@@ -28,7 +28,7 @@
                     <tbody>
                     {% for request in object_list %}
                         <tr>
-                            <td><a href="">{{ request.term }}</a></td>
+                            <td><a href="{% url update_url request.request_id %}">{{ request.term }}</a></td>
                             <td>{{ request.definition }}</td>
                             <td>{{ request.date_submitted }}</td>
                             <td>{{ request.submitter_name }}</td>
