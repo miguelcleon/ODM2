@@ -53,10 +53,13 @@ class DefaultRequestListView(ListView):
     request_verbose = None
 
     def __init__(self, **kwargs):
-        self.request = kwargs['request']
-        self.vocabulary = kwargs['vocabulary']
-        self.request_verbose = kwargs['request_verbose']
         super(DefaultRequestListView, self).__init__(**kwargs)
+        self.request_verbose = kwargs['request_verbose']
+        self.vocabulary = kwargs['vocabulary']
+        self.request = kwargs['request']
+        self.queryset = self.model.objects.filter(status=self.model.PENDING) \
+                        | self.model.objects.filter(original_request__isnull=False)
+
 
     def get_context_data(self, **kwargs):
         context = super(DefaultRequestListView, self).get_context_data(**kwargs)
