@@ -8,10 +8,10 @@ vocabulary_detail_template = 'cvinterface/vocabularies/default_detail.html'
 
 request_list_view = DefaultRequestListView
 request_create_view = DefaultRequestCreateView
-request_update_view = None
+request_update_view = DefaultRequestUpdateView
 request_list_template = 'cvinterface/requests/default_list.html'
 request_create_template = 'cvinterface/requests/default_form.html'
-request_update_template = 'cvinterface/requests/default_update.html'
+request_update_template = 'cvinterface/requests/default_update_form.html'
 
 
 

@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import datetime
 from django.utils import timezone
 from uuid import uuid4
 
@@ -13,27 +14,30 @@ class ControlVocabulary(models.Model):
     provenance = models.TextField(blank=True)
     provenance_uri = models.URLField(db_column='provenanceUri', blank=True)
     note = models.TextField(blank=True)
-    version = models.IntegerField()
 
     class Meta:
         abstract = True
         ordering = ["-name"]
 
+
 class ControlVocabularyRequest(models.Model):
+    PENDING = 'Pending'
+    REJECTED = 'Rejected'
+    ACCEPTED = 'Accepted'
     STATUS_CHOICES = (
-        ('Pending', 'Pending'),
-        ('Rejected', 'Rejected'),
-        ('Accepted', 'Accepted'),
+        (PENDING, 'Pending'),
+        (REJECTED, 'Rejected'),
+        (ACCEPTED, 'Accepted'),
     )
     request_id = models.CharField(max_length=255, db_column='requestId', primary_key=True, default=uuid4)
     status = models.CharField(max_length=255, db_column='status', choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
-    date_submitted = models.DateField(db_column='dateSubmitted', default=timezone.now())
-    date_status_changed = models.DateField(db_column='dateStatusChanged', default=timezone.now())
+    date_submitted = models.DateField(db_column='dateSubmitted', default=timezone.now)
+    date_status_changed = models.DateField(db_column='dateStatusChanged', default=timezone.now)
     request_notes = models.TextField(db_column='requestNotes')
     submitter_name = models.CharField(max_length=255, db_column='submitterName')
     submitter_email = models.CharField(max_length=255, db_column='submitterEmail', blank=True)
     request_reason = models.CharField(max_length=255, db_column='requestReason')
-    original_request = models.ForeignKey('self')
+    original_request = models.ForeignKey('self', db_column='originalRequestId', null=True)
 
     class Meta:
         abstract = True

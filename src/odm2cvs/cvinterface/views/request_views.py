@@ -27,6 +27,16 @@ for request_name in requests:
         vocabulary=request['vocabulary'], request_verbose=request['name'], template_name=template
     )
 
+request_update_views = {}
+for request_name in requests:
+    request = requests[request_name]
+    view = request['update_view'] if 'update_view' in request else request_update_view
+    template = request['update_template'] if 'update_template' in request else request_update_template
+
+    request_update_views[request_name] = view.as_view(request=request_name, model=request['model'],
+        vocabulary=request['vocabulary'], request_verbose=request['name'], template_name=template
+    )
+
 
 class RequestsView(ListView):
     queryset = []

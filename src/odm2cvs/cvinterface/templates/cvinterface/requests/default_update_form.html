@@ -1,0 +1,29 @@
+{% extends 'cvinterface/base.html' %}
+{% load widget_tweaks %}
+
+{% block body %}
+    <div class="col-lg-6">
+        <div class="well add-new-dialog">
+            <fieldset>
+                <legend>{% if object.status == 'Pending' %}Update{% else %}View{% endif %} {{ request_verbose }}</legend>
+                <form action="" method="post">{% csrf_token %}
+                    {% for field in form %}
+                        {{ field.errors }}
+                        <label class="col-lg-3 control-label" for={{ field.id_for_label }}>{{ field.label }}</label>
+                        <div class="col-lg-9">
+                            {% if field.name in read_only or all_disabled %}
+                                {{ field|add_class:"form-control"|attr:'disabled' }}
+                            {% else %}
+                                {{ field|add_class:"form-control" }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    {% if object.status == 'Pending' %}
+                        <input name="request_accept" class="btn btn-default" type="submit" value="Accept Request" />
+                        <input name="request_reject" class="btn btn-default" type="submit" value="Reject Request" />
+                    {% endif %}
+                </form>
+            </fieldset>
+        </div>
+    </div>
+{% endblock %}
