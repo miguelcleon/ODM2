@@ -54,6 +54,8 @@ for request_name in request_create_views:
     urlpatterns += patterns('',
         url(r'^' + settings.SITE_URL + 'requests/' + requests[request_name]['vocabulary'] + '/new/$', view,
             name=requests[request_name]['vocabulary'] + '_form'),
+        url(r'^' + settings.SITE_URL + 'requests/' + requests[request_name]['vocabulary'] + '/new/(?P<term>[\w]+)/$',
+            view, name=requests[request_name]['vocabulary'] + '_form'),
     )
 
 # request update views

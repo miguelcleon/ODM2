@@ -24,7 +24,8 @@ for request_name in requests:
     template = request['create_template'] if 'create_template' in request else request_create_template
 
     request_create_views[request_name] = view.as_view(request=request_name, model=request['model'],
-        vocabulary=request['vocabulary'], request_verbose=request['name'], template_name=template
+        vocabulary=request['vocabulary'], request_verbose=request['name'], template_name=template,
+        vocabulary_model=request['vocabulary_model']
     )
 
 request_update_views = {}

@@ -3,7 +3,7 @@
 {% block body %}
     <div class="col-lg-12">
         <div class="well term-description-container">
-            <a id="btnEdit" href="" class="btn btn-default btn-dock-down">Edit</a>
+            <a id="btnEdit" href="{% url create_url object.term %}" class="btn btn-default btn-dock-down">Edit</a>
             <a id="btnSKOSTerm" href="{% url 'api_dispatch_detail' resource_name=vocabulary api_name='v1' pk=object.pk %}?format=skos" class="btn btn-default btn-dock-down">View this Term in SKOS</a>
             <fieldset>
                 <legend>{{ object.name }} - {{ vocabulary_verbose }}</legend>

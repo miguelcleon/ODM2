@@ -43,6 +43,7 @@ class DefaultVocabularyDetailView(DetailView):
         context = super(DefaultVocabularyDetailView, self).get_context_data(**kwargs)
         context['vocabulary_verbose'] = self.vocabulary_verbose
         context['vocabulary'] = self.vocabulary
+        context['create_url'] = self.vocabulary + '_form'
         return context
 
 
@@ -114,8 +115,8 @@ class DefaultRequestUpdateView(UpdateView):
 
     def accept_request(self, form):
         vocabulary_filter = self.vocabulary_model.objects.filter(pk=form.instance.pk)
-        exists = vocabulary_filter.count() is not 0
-        concept = vocabulary_filter.pop() if exists else self.vocabulary_model()
+        exists = vocabulary_filter.count() is 1
+        concept = vocabulary_filter.get() if exists else self.vocabulary_model()
 
         concept_fields = [concept_field.name for concept_field in concept._meta.fields]
         request_fields = [request_field.name for request_field in form.instance._meta.fields]
@@ -155,6 +156,7 @@ class DefaultRequestCreateView(CreateView):
     request = None
     vocabulary = None
     request_verbose = None
+    vocabulary_model = None
     success_view = 'new_request_success'
     fields = ['term', 'name', 'definition', 'category', 'provenance', 'provenance_uri',
               'note', 'request_notes', 'submitter_name', 'submitter_email', 'request_reason']
@@ -163,8 +165,25 @@ class DefaultRequestCreateView(CreateView):
         self.request = kwargs['request']
         self.vocabulary = kwargs['vocabulary']
         self.request_verbose = kwargs['request_verbose']
+        self.vocabulary_model = kwargs['vocabulary_model']
         self.success_url = reverse_lazy(self.success_view, kwargs={'redirect_model': self.vocabulary})
         super(DefaultRequestCreateView, self).__init__(**kwargs)
+
+    def get_initial(self):
+        if 'term' not in self.kwargs:
+            return {}
+
+        concept_query = self.vocabulary_model.objects.filter(pk=self.kwargs['term'])
+        if concept_query.count() is not 1:
+            return {}
+
+        initial_data = {}
+        concept = concept_query.get()
+        fields = [concept_field.name for concept_field in concept._meta.fields]
+        for field in fields:
+            initial_data[field] = concept.__getattribute__(field)
+
+        return initial_data
 
     def get_context_data(self, **kwargs):
         context = super(DefaultRequestCreateView, self).get_context_data(**kwargs)
