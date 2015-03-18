@@ -60,7 +60,6 @@ class DefaultRequestListView(ListView):
         self.queryset = self.model.objects.filter(status=self.model.PENDING) \
                         | self.model.objects.filter(original_request__isnull=False)
 
-
     def get_context_data(self, **kwargs):
         context = super(DefaultRequestListView, self).get_context_data(**kwargs)
         context['request'] = self.request
@@ -74,7 +73,7 @@ class DefaultRequestUpdateView(UpdateView):
     vocabulary = None
     vocabulary_model = None
     request_verbose = None
-    success_view = 'request_success'
+    success_view = 'update_request_success'
     accept_button = 'request_accept'
     reject_button = 'request_reject'
     exclude = ['request_id', 'term', 'status', 'date_submitted', 'date_status_changed', 'original_request']
@@ -86,7 +85,7 @@ class DefaultRequestUpdateView(UpdateView):
         self.vocabulary = kwargs['vocabulary']
         self.vocabulary_model = kwargs['vocabulary_model']
         self.request_verbose = kwargs['request_verbose']
-        self.success_url = reverse_lazy(self.success_view, kwargs={'vocabulary': self.vocabulary})
+        self.success_url = reverse_lazy(self.success_view, kwargs={'redirect_model': self.request})
         self.fields = [field.name for field in self.model._meta.fields if field.name not in self.exclude]
 
     def get_context_data(self, **kwargs):
@@ -150,12 +149,13 @@ class DefaultRequestUpdateView(UpdateView):
         form.instance.original_request = self.model.objects.get(pk=old_instance.pk)
         form.instance.save()
 
+
 # TODO: use the model fields to get the list of fields and have an 'exclude' list. that way a class is not necessary to add the extra fields of a class.
 class DefaultRequestCreateView(CreateView):
     request = None
     vocabulary = None
     request_verbose = None
-    success_view = 'request_success'
+    success_view = 'new_request_success'
     fields = ['term', 'name', 'definition', 'category', 'provenance', 'provenance_uri',
               'note', 'request_notes', 'submitter_name', 'submitter_email', 'request_reason']
 
@@ -163,7 +163,7 @@ class DefaultRequestCreateView(CreateView):
         self.request = kwargs['request']
         self.vocabulary = kwargs['vocabulary']
         self.request_verbose = kwargs['request_verbose']
-        self.success_url = reverse_lazy(self.success_view, kwargs={'vocabulary': self.vocabulary})
+        self.success_url = reverse_lazy(self.success_view, kwargs={'redirect_model': self.vocabulary})
         super(DefaultRequestCreateView, self).__init__(**kwargs)
 
     def get_context_data(self, **kwargs):
@@ -171,7 +171,6 @@ class DefaultRequestCreateView(CreateView):
         context['request'] = self.request
         context['request_verbose'] = self.request_verbose
         context['vocabulary'] = self.vocabulary
-        context['success_view'] = 'request_success'
         return context
 
 

@@ -14,7 +14,10 @@ urlpatterns = patterns('',
     url(r'^' + settings.SITE_URL + 'api/', include(v1_api.urls)),
     url(r'^' + settings.SITE_URL + 'admin/', include(admin.site.urls)),
     url(r'^' + settings.SITE_URL + 'requests/$', RequestsView.as_view(), name='requests_list'),
-    url(r'^' + settings.SITE_URL + 'requests/success/(?P<vocabulary>\w+)/$', SuccessRedirectView.as_view(), name='request_success'),
+    url(r'^' + settings.SITE_URL + 'requests/success/create/(?P<redirect_model>\w+)/$',
+        SuccessRedirectView.as_view(message="Your request for a new concept has been made."), name='new_request_success'),
+    url(r'^' + settings.SITE_URL + 'requests/success/update/(?P<redirect_model>\w+)/$',
+        SuccessRedirectView.as_view(message="The request and vocabulary have been updated."), name='update_request_success'),
 )
 
 

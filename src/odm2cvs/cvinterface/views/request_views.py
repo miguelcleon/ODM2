@@ -56,9 +56,8 @@ class RequestsView(ListView):
 
 
 class SuccessRedirectView(RedirectView):
-    message = "Your request for a new concept has been made."
+    message = None
 
-    def get_redirect_url(self, vocabulary):
+    def get_redirect_url(self, redirect_model):
         messages.add_message(self.request, messages.SUCCESS, self.message)
-        # TODO: if user is an administrator, redirect to the list of requests.
-        return reverse(vocabulary)
+        return reverse(redirect_model)
