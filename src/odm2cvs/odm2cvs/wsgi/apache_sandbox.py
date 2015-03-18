@@ -13,7 +13,7 @@ import sys
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'odm2cvs.settings.apache_sandbox'
 os.environ['ODM2CVS_SECRET_KEY'] = 'thisisthenewkey'
-os.environ['ODM2CVS_DATABASE_HOST'] = 'jws.uwrl.usu.edu'
+os.environ['ODM2CVS_DATABASE_HOST'] = 'localhost'
 os.environ['ODM2CVS_DATABASE_USER'] = 'django'
 os.environ['ODM2CVS_DATABASE_PASSWORD'] = 'django4pp!'
 os.environ['ODM2CVS_STATIC_ROOT'] = '/var/www/static/'

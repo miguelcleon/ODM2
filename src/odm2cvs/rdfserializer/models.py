@@ -11,7 +11,7 @@ class Namespace(models.Model):
         return self.alias
 
     class Meta:
-        db_table = 'Namespaces'
+        db_table = 'namespaces'
 
 
 class Node(models.Model):
@@ -27,7 +27,7 @@ class Node(models.Model):
         return self.complete_name
 
     class Meta:
-        db_table = 'Nodes'
+        db_table = 'nodes'
 
 
 class FieldRelation(models.Model):
@@ -39,7 +39,7 @@ class FieldRelation(models.Model):
         return self.node.complete_name + "->" + self.field_name
 
     class Meta:
-        db_table = 'FieldsRelations'
+        db_table = 'fieldsrelations'
 
 
 class Scheme(models.Model):
@@ -53,6 +53,6 @@ class Scheme(models.Model):
         return self.name
 
     class Meta:
-        db_table = 'Schemes'
+        db_table = 'schemes'
         ordering = ["-name"]
 
