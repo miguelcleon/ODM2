@@ -68,18 +68,21 @@ class ActionType(ControlVocabulary, AbstractActionType):
         managed = False
         db_table = 'actiontypecv'
         verbose_name = 'Action Type'
+        ordering = ["name"]
 
 class ActionTypeRequest(ControlVocabularyRequest, ControlVocabulary, AbstractActionType):
     class Meta:
         managed = False
         db_table = 'actiontypecvrequests'
         verbose_name = 'Action Type Request'
+        ordering = ["name"]
 
 class MethodType(ControlVocabulary):
     class Meta:
         managed = False
         db_table = 'methodtypecv'
         verbose_name = 'Method Type'
+        ordering = ["name"]
 
 
 class MethodTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -87,6 +90,7 @@ class MethodTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'methodtypecvrequests'
         verbose_name = 'Method Type Request'
+        ordering = ["name"]
 
 
 class OrganizationType(ControlVocabulary):
@@ -94,6 +98,7 @@ class OrganizationType(ControlVocabulary):
         managed = False
         db_table = 'organizationtypecv'
         verbose_name = 'Organization Type'
+        ordering = ["name"]
 
 
 class OrganizationTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -101,6 +106,7 @@ class OrganizationTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'organizationtypecvrequests'
         verbose_name = 'Organization Type Request'
+        ordering = ["name"]
 
 
 class SamplingFeatureGeotype(ControlVocabulary):
@@ -108,6 +114,7 @@ class SamplingFeatureGeotype(ControlVocabulary):
         managed = False
         db_table = 'samplingfeaturegeotypecv'
         verbose_name = 'Sampling Feature Geo-type'
+        ordering = ["name"]
 
 
 class SamplingFeatureGeotypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -115,6 +122,7 @@ class SamplingFeatureGeotypeRequest(ControlVocabularyRequest, ControlVocabulary)
         managed = False
         db_table = 'samplingfeaturegeotypecvrequests'
         verbose_name = 'Sampling Feature Geo-type Request'
+        ordering = ["name"]
 
 
 class SamplingFeatureType(ControlVocabulary):
@@ -122,6 +130,7 @@ class SamplingFeatureType(ControlVocabulary):
         managed = False
         db_table = 'samplingfeaturetypecv'
         verbose_name = 'Sampling Feature Type'
+        ordering = ["name"]
 
 
 class SamplingFeatureTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -129,6 +138,7 @@ class SamplingFeatureTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'samplingfeaturetypecvrequests'
         verbose_name = 'Sampling Feature Type Request'
+        ordering = ["name"]
 
 
 class SiteType(ControlVocabulary):
@@ -136,6 +146,7 @@ class SiteType(ControlVocabulary):
         managed = False
         db_table = 'sitetypecv'
         verbose_name = 'Site Type'
+        ordering = ["name"]
 
 
 class SiteTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -143,6 +154,7 @@ class SiteTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'sitetypecvrequests'
         verbose_name = 'Site Type Request'
+        ordering = ["name"]
 
 
 class AggregationStatistic(ControlVocabulary):
@@ -150,6 +162,7 @@ class AggregationStatistic(ControlVocabulary):
         managed = False
         db_table = 'aggregationstatisticcv'
         verbose_name = 'Aggregation Statistic'
+        ordering = ["name"]
 
 
 class AggregationStatisticRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -157,6 +170,7 @@ class AggregationStatisticRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'aggregationstatisticcvrequests'
         verbose_name = 'Aggregation Statistic Request'
+        ordering = ["name"]
 
 
 class AnnotationType(ControlVocabulary):
@@ -164,6 +178,7 @@ class AnnotationType(ControlVocabulary):
         managed = False
         db_table = 'annotationtypecv'
         verbose_name = 'Annotation Type'
+        ordering = ["name"]
 
 
 class AnnotationTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -171,6 +186,7 @@ class AnnotationTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'annotationtypecvrequests'
         verbose_name = 'Annotation Type Request'
+        ordering = ["name"]
 
 
 class CensorCode(ControlVocabulary):
@@ -178,6 +194,7 @@ class CensorCode(ControlVocabulary):
         managed = False
         db_table = 'censorcodecv'
         verbose_name = 'Censor Code'
+        ordering = ["name"]
 
 
 class CensorCodeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -185,6 +202,7 @@ class CensorCodeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'censorcodecvrequests'
         verbose_name = 'Censor Code Request'
+        ordering = ["name"]
 
 
 class DatasetType(ControlVocabulary):
@@ -192,6 +210,7 @@ class DatasetType(ControlVocabulary):
         managed = False
         db_table = 'datasettypecv'
         verbose_name = 'Dataset Type'
+        ordering = ["name"]
 
 
 class DatasetTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -199,6 +218,7 @@ class DatasetTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'datasettypecvrequests'
         verbose_name = 'Dataset Type Request'
+        ordering = ["name"]
 
 
 class DirectiveType(ControlVocabulary):
@@ -206,6 +226,7 @@ class DirectiveType(ControlVocabulary):
         managed = False
         db_table = 'directivetypecv'
         verbose_name = 'Directive Type'
+        ordering = ["name"]
 
 
 class DirectiveTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -213,6 +234,7 @@ class DirectiveTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'directivetypecvrequests'
         verbose_name = 'Directive Type Request'
+        ordering = ["name"]
 
 
 class ElevationDatum(ControlVocabulary):
@@ -220,6 +242,7 @@ class ElevationDatum(ControlVocabulary):
         managed = False
         db_table = 'elevationdatumcv'
         verbose_name = 'Elevation Datum'
+        ordering = ["name"]
 
 
 class ElevationDatumRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -227,6 +250,7 @@ class ElevationDatumRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'elevationdatumcvrequests'
         verbose_name = 'Elevation Datum Request'
+        ordering = ["name"]
 
 
 class EquipmentType(ControlVocabulary):
@@ -234,6 +258,7 @@ class EquipmentType(ControlVocabulary):
         managed = False
         db_table = 'equipmenttypecv'
         verbose_name = 'Equipment Type'
+        ordering = ["name"]
 
 
 class EquipmentTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -241,6 +266,7 @@ class EquipmentTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'equipmenttypecvrequests'
         verbose_name = 'Equipment Type Request'
+        ordering = ["name"]
 
 
 class PropertyDataType(ControlVocabulary):
@@ -248,6 +274,7 @@ class PropertyDataType(ControlVocabulary):
         managed = False
         db_table = 'propertydatatypecv'
         verbose_name = 'Property Data Type'
+        ordering = ["name"]
 
 
 class PropertyDataTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -255,6 +282,7 @@ class PropertyDataTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'propertydatatypecvrequests'
         verbose_name = 'Property Data Type Request'
+        ordering = ["name"]
 
 
 class QualityCode(ControlVocabulary):
@@ -262,6 +290,7 @@ class QualityCode(ControlVocabulary):
         managed = False
         db_table = 'qualitycodecv'
         verbose_name = 'Quality Code'
+        ordering = ["name"]
 
 
 class QualityCodeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -269,6 +298,7 @@ class QualityCodeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'qualitycodecvrequests'
         verbose_name = 'Quality Code Request'
+        ordering = ["name"]
 
 
 class ReferenceMaterialMedium(ControlVocabulary):
@@ -276,6 +306,7 @@ class ReferenceMaterialMedium(ControlVocabulary):
         managed = False
         db_table = 'referencematerialmediumcv'
         verbose_name = 'Reference Material Medium'
+        ordering = ["name"]
 
 
 class ReferenceMaterialMediumRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -283,6 +314,7 @@ class ReferenceMaterialMediumRequest(ControlVocabularyRequest, ControlVocabulary
         managed = False
         db_table = 'referencematerialmediumcvrequests'
         verbose_name = 'Reference Material Medium Request'
+        ordering = ["name"]
 
 
 class ResultType(ControlVocabulary):
@@ -290,6 +322,7 @@ class ResultType(ControlVocabulary):
         managed = False
         db_table = 'resulttypecv'
         verbose_name = 'Result Type'
+        ordering = ["name"]
 
 
 class ResultTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -297,6 +330,7 @@ class ResultTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'resulttypecvrequests'
         verbose_name = 'Result Type Request'
+        ordering = ["name"]
 
 
 class SampledMedium(ControlVocabulary):
@@ -304,6 +338,7 @@ class SampledMedium(ControlVocabulary):
         managed = False
         db_table = 'sampledmediumcv'
         verbose_name = 'Sampled Medium'
+        ordering = ["name"]
 
 
 class SampledMediumRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -311,6 +346,7 @@ class SampledMediumRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'sampledmediumcvrequests'
         verbose_name = 'Sampled Medium Request'
+        ordering = ["name"]
 
 
 class SpatialOffsetType(ControlVocabulary, AbstractSpatialOffsetType):
@@ -318,6 +354,7 @@ class SpatialOffsetType(ControlVocabulary, AbstractSpatialOffsetType):
         managed = False
         db_table = 'spatialoffsettypecv'
         verbose_name = 'Spatial Offset Type'
+        ordering = ["name"]
 
 
 class SpatialOffsetTypeRequest(ControlVocabularyRequest, ControlVocabulary, AbstractSpatialOffsetType):
@@ -325,6 +362,7 @@ class SpatialOffsetTypeRequest(ControlVocabularyRequest, ControlVocabulary, Abst
         managed = False
         db_table = 'spatialoffsettypecvrequests'
         verbose_name = 'Spatial Offset Type Request'
+        ordering = ["name"]
 
 
 class Speciation(ControlVocabulary):
@@ -332,6 +370,7 @@ class Speciation(ControlVocabulary):
         managed = False
         db_table = 'speciationcv'
         verbose_name = 'Speciation'
+        ordering = ["name"]
 
 
 class SpeciationRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -339,6 +378,7 @@ class SpeciationRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'speciationcvrequests'
         verbose_name = 'Speciation Request'
+        ordering = ["name"]
 
 
 class SpecimenMedium(ControlVocabulary):
@@ -346,6 +386,7 @@ class SpecimenMedium(ControlVocabulary):
         managed = False
         db_table = 'specimenmediumcv'
         verbose_name = 'Specimen Medium'
+        ordering = ["name"]
 
 
 class SpecimenMediumRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -353,6 +394,7 @@ class SpecimenMediumRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'specimenmediumcvrequests'
         verbose_name = 'Specimen Medium Request'
+        ordering = ["name"]
 
 
 class SpecimenType(ControlVocabulary):
@@ -360,6 +402,7 @@ class SpecimenType(ControlVocabulary):
         managed = False
         db_table = 'specimentypecv'
         verbose_name = 'Specimen Type'
+        ordering = ["name"]
 
 
 class SpecimenTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -367,6 +410,7 @@ class SpecimenTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'specimentypecvrequests'
         verbose_name = 'Specimen Type Request'
+        ordering = ["name"]
 
 
 class Status(ControlVocabulary):
@@ -374,6 +418,7 @@ class Status(ControlVocabulary):
         managed = False
         db_table = 'statuscv'
         verbose_name = 'Status'
+        ordering = ["name"]
 
 
 class StatusRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -381,6 +426,7 @@ class StatusRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'statuscvrequests'
         verbose_name = 'Status Request'
+        ordering = ["name"]
 
 
 class TaxonomicClassifierType(ControlVocabulary):
@@ -388,6 +434,7 @@ class TaxonomicClassifierType(ControlVocabulary):
         managed = False
         db_table = 'taxonomicclassifiertypecv'
         verbose_name = 'Taxonomic Classifier Type'
+        ordering = ["name"]
 
 
 class TaxonomicClassifierTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -395,6 +442,7 @@ class TaxonomicClassifierTypeRequest(ControlVocabularyRequest, ControlVocabulary
         managed = False
         db_table = 'taxonomicclassifiertypecvrequests'
         verbose_name = 'Taxonomic Classifier Type Request'
+        ordering = ["name"]
 
 
 class VariableName(ControlVocabulary):
@@ -402,6 +450,7 @@ class VariableName(ControlVocabulary):
         managed = False
         db_table = 'variablenamecv'
         verbose_name = 'Variable Name'
+        ordering = ["name"]
 
 
 class VariableNameRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -409,6 +458,7 @@ class VariableNameRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'variablenamecvrequests'
         verbose_name = 'Variable Name Request'
+        ordering = ["name"]
 
 
 class VariableType(ControlVocabulary):
@@ -416,6 +466,7 @@ class VariableType(ControlVocabulary):
         managed = False
         db_table = 'variabletypecv'
         verbose_name = 'Variable Type'
+        ordering = ["name"]
 
 
 class VariableTypeRequest(ControlVocabularyRequest, ControlVocabulary):
@@ -423,5 +474,6 @@ class VariableTypeRequest(ControlVocabularyRequest, ControlVocabulary):
         managed = False
         db_table = 'variabletypecvrequests'
         verbose_name = 'Variable Type Request'
+        ordering = ["name"]
 
 

@@ -25,7 +25,7 @@ class DefaultVocabularyListView(ListView):
         context['vocabulary_verbose'] = self.vocabulary_verbose
         context['create_url'] = self.vocabulary + '_form'
         context['detail_url'] = self.vocabulary + '_detail'
-        #context['vocabulary_def'] = self.vocabulary_def
+        context['vocabulary_def'] = self.vocabulary_def
         context['vocabulary'] = self.vocabulary
         return context
 
