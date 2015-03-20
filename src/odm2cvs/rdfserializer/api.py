@@ -36,14 +36,15 @@ class RdfSerializer(Serializer):
     formats = ['json', 'skos']
     content_types = {
         'json': 'application/json',
-        'skos': 'application/rdf+xml'
-        # 'skos': 'application/rdf+xml'
+        #'skos': 'application/xml+rdf'
+        'skos': 'text/plain'
     }
 
     def to_skos(self, data, options=None):
         """
         Given some data, converts that data to an rdf skos format in xml.
         """
+        print "D A T A : ", data, "T Y P E : ", type(data)
         # element = {}
         # get scheme: resource being requested. actionTypeCV, methodTypeCV, etc.
         scheme = Scheme.objects.get(name=options['scheme'])
@@ -59,7 +60,7 @@ class RdfSerializer(Serializer):
 
         # If requesting an entire CV.
         if isinstance(data, dict):
-	    logging.info("data: " + str(data))
+	    print data
             # Add a SKOS ConceptScheme class to the graph.
             (graph.add((URIRef(scheme.uri), RDF['type'],
                         SKOS['ConceptScheme'])))

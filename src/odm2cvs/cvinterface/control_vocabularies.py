@@ -309,7 +309,7 @@ requests = {
         'model': StatusRequest,
     },
     'taxonomicclassifiertyperequest': {
-        'vocabulary': 'taxonomicclassifertype',
+        'vocabulary': 'taxonomicclassifiertype',
         'vocabulary_model': TaxonomicClassifierType,
         'name': TaxonomicClassifierTypeRequest._meta.verbose_name,
         'model': TaxonomicClassifierTypeRequest,

@@ -54,5 +54,4 @@ class Scheme(models.Model):
 
     class Meta:
         db_table = 'schemes'
-        ordering = ["-name"]
 

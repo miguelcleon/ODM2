@@ -36,7 +36,6 @@ class VocabulariesView(ListView):
     def get_context_data(self, **kwargs):
         sorted_vocabularies = sorted(vocabularies.items(), key=operator.itemgetter(0))
         context = super(VocabulariesView, self).get_context_data(**kwargs)
-        print OrderedDict(sorted(vocabularies.items()))
         context['vocabulary_views'] = [{'definition': vocabularies[vocabulary_name]['definition'],'name': vocabularies[vocabulary_name]['name'], 'url': reverse(vocabulary_name)}
                                        for vocabulary_name in OrderedDict(sorted(vocabularies.items()))]
 

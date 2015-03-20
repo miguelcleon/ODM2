@@ -18,7 +18,8 @@
             </ul>
         {% endif %}
         <a id="btnAddNew" href="{% url create_url %}" class="btn btn-default btn-dock-down">New</a>
-        <a id="btnSKOS" href="{% url 'api_dispatch_list' resource_name=vocabulary api_name='v1' %}?format=skos" class="btn btn-default btn-dock-down">View this Controlled Vocabulary in SKOS</a>
+        <a id="btnSKOS"  target="_blank" href="{% url 'api_dispatch_list' resource_name=vocabulary api_name='v1' %}?format=skos" class="btn btn-default btn-dock-down">View this Controlled Vocabulary in SKOS</a>
+        <a id="btnSKOS" download="{{vocabulary}}.xml" href="{% url 'api_dispatch_list' resource_name=vocabulary api_name='v1' %}?format=skos" class="btn btn-default btn-dock-down">Download this Vocabulary</a>
         <h2 class="divTitle">{{ vocabulary_verbose }} Vocabulary Concepts</h2>
         <p>{{ vocabulary_def }}</p>
         <div>

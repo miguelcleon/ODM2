@@ -137,7 +137,7 @@ class AnnotationTypeResource(ModelRdfResource):
     scheme = 'annotationType'
 
     class Meta:
-        queryset = AggregationStatistic.objects.using('control_vocabularies').all()
+        queryset = AnnotationType.objects.using('control_vocabularies').all()
         resource_name = 'annotationtype'
         max_limit = 0
         serializer = RdfSerializer()
