@@ -36,7 +36,7 @@ class RdfSerializer(Serializer):
     formats = ['json', 'skos']
     content_types = {
         'json': 'application/json',
-        #'skos': 'application/xml+rdf'
+        #'skos': 'application/rdf+xml'
         'skos': 'text/plain'
     }
 
@@ -44,7 +44,6 @@ class RdfSerializer(Serializer):
         """
         Given some data, converts that data to an rdf skos format in xml.
         """
-        print "D A T A : ", data, "T Y P E : ", type(data)
         # element = {}
         # get scheme: resource being requested. actionTypeCV, methodTypeCV, etc.
         scheme = Scheme.objects.get(name=options['scheme'])

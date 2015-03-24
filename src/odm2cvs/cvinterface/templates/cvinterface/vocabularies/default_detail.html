@@ -2,10 +2,23 @@
 
 {% block body %}
     <div class="col-lg-12">
-        <div class="well term-description-container">
+        <div id="header-div" class="well term-description-container">
             <a id="btnEdit" href="{% url create_url object.term %}" class="btn btn-default btn-dock-down">Edit</a>
             <a id="btnSKOSTerm" target="_blank" href="{% url 'api_dispatch_detail' resource_name=vocabulary api_name='v1' pk=object.pk %}?format=skos" class="btn btn-default btn-dock-down">View this Term in SKOS</a>
-            <a id="btnSKOS" download="{{vocabulary}}_{{object.term}}.rdf" href="{% url 'api_dispatch_detail' resource_name=vocabulary api_name='v1' pk=object.pk %}?format=skos" class="btn btn-default btn-dock-down">Download this Vocabulary</a>
+            <a id="btnSKOS" download="{{vocabulary}}_{{object.term}}.rdf" href="{% url 'api_dispatch_detail' resource_name=vocabulary api_name='v1' pk=object.pk %}?format=skos" target="_blank" class="btn btn-default btn-dock-down">Download this Vocabulary</a>
+            
+            <script>
+            if(!('download' in document.createElement('a'))) {
+                var elem = document.getElementById("btnSKOS");
+                elem.parentNode.removeChild(elem);
+                var new_p = document.createElement('p');
+                new_p.innerHTML = 'Your browser does not support all of the features of this website. To download this term, right click on the SKOS button.';
+                new_p.setAttribute('style', 'color:red');
+                var div = document.getElementById('header-div');
+                div.appendChild(new_p);
+            }
+            </script>
+
             <fieldset>
                 <legend>{{ object.name }} - {{ vocabulary_verbose }}</legend>
 
