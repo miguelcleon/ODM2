@@ -1,11 +1,13 @@
 from uuid import uuid4
 from string import capwords
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 
 
 # Vocabulary Basic Views
@@ -59,6 +61,10 @@ class DefaultRequestListView(ListView):
     vocabulary = None
     request_verbose = None
 
+    @method_decorator(login_required(login_url=reverse_lazy('login')))
+    def dispatch(self, *args, **kwargs):
+        return super(DefaultRequestListView, self).dispatch(*args, **kwargs)
+
     def __init__(self, **kwargs):
         super(DefaultRequestListView, self).__init__(**kwargs)
         self.request_verbose = kwargs['request_verbose']
@@ -85,6 +91,10 @@ class DefaultRequestUpdateView(SuccessMessageMixin, UpdateView):
     success_message = 'The request has been updated.'
     exclude = ['request_id', 'term', 'status', 'date_submitted', 'date_status_changed', 'original_request']
     read_only = []
+
+    @method_decorator(login_required(login_url=reverse_lazy('login')))
+    def dispatch(self, *args, **kwargs):
+        return super(DefaultRequestUpdateView, self).dispatch(*args, **kwargs)
 
     def __init__(self, **kwargs):
         super(DefaultRequestUpdateView, self).__init__(**kwargs)
@@ -165,6 +175,10 @@ class DefaultRequestCreateView(SuccessMessageMixin, CreateView):
     vocabulary_verbose = None
     success_message = 'Your request has been made successfully.'
     exclude = ['request_id', 'status', 'date_submitted', 'date_status_changed', 'original_request']
+
+    @method_decorator(login_required(login_url=reverse_lazy('login')))
+    def dispatch(self, *args, **kwargs):
+        return super(DefaultRequestCreateView, self).dispatch(*args, **kwargs)
 
     def __init__(self, **kwargs):
         super(DefaultRequestCreateView, self).__init__(**kwargs)

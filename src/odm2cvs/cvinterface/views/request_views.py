@@ -1,8 +1,9 @@
 from operator import itemgetter
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views.generic import RedirectView
-from django.core.urlresolvers import reverse
-
+from django.core.urlresolvers import reverse, reverse_lazy
 
 from cvinterface.views.base_views import *
 from cvinterface.control_vocabularies import requests, vocabularies, request_list_view, request_list_template, \
@@ -45,6 +46,10 @@ for request_name in requests:
 class RequestsView(ListView):
     queryset = []
     template_name = 'cvinterface/requests/main_requests_list.html'
+
+    @method_decorator(login_required(login_url=reverse_lazy('login')))
+    def dispatch(self, *args, **kwargs):
+        return super(RequestsView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(RequestsView, self).get_context_data(**kwargs)
