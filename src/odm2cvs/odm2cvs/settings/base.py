@@ -65,7 +65,7 @@ WSGI_APPLICATION = 'odm2cvs.wsgi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'odm2cvsconfig',
+        'NAME': 'odmcvsconfig',
         'USER': DATABASE_USER,
         'PASSWORD': DATABASE_PASSWORD,
         'HOST': DATABASE_HOST,
@@ -73,21 +73,12 @@ DATABASES = {
     },
     'control_vocabularies': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'odm2cvs',
-        'USER': DATABASE_USER,
-        'PASSWORD': DATABASE_PASSWORD,
-        'HOST': DATABASE_HOST,
-        'PORT': '3306',
-    },
-    'control_vocabularies_new': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'odm2cvs',
+        'NAME': 'odmcvs',
         'USER': DATABASE_USER,
         'PASSWORD': DATABASE_PASSWORD,
         'HOST': DATABASE_HOST,
         'PORT': '3306',
     }
-
 }
 
 # Internationalization

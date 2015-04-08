@@ -1,47 +1,30 @@
 {% extends 'cvinterface/base.html' %}
 
 {% block body %}
-    <div class="col-lg-12">
-        <div id="header-div" class="well term-description-container">
-            <a id="btnEdit" href="{% url create_url object.term %}" class="btn btn-default btn-dock-down">Edit</a>
-            <a id="btnSKOSTerm" target="_blank" href="{% url 'api_dispatch_detail' resource_name=vocabulary api_name='v1' pk=object.pk %}?format=skos" class="btn btn-default btn-dock-down">View this Term in SKOS</a>
-            <a id="btnSKOS" download="{{vocabulary}}_{{object.term}}.rdf" href="{% url 'api_dispatch_detail' resource_name=vocabulary api_name='v1' pk=object.pk %}?format=skos" target="_blank" class="btn btn-default btn-dock-down">Download this Vocabulary</a>
-            
-            <script>
-            if(!('download' in document.createElement('a'))) {
-                var elem = document.getElementById("btnSKOS");
-                elem.parentNode.removeChild(elem);
-                var new_p = document.createElement('p');
-                new_p.innerHTML = 'Your browser does not support all of the features of this website. To download this term, right click on the SKOS button.';
-                new_p.setAttribute('style', 'color:red');
-                var div = document.getElementById('header-div');
-                div.appendChild(new_p);
-            }
-            </script>
+    <section class="concept-detail">
+        <header>
+            <div class="vocabulary-links">
+                <a id="btnEdit" href="{% url create_url object.term %}" class="button white">Edit</a>
+                <a id="btnSKOSTerm" target="_blank" href="{% url 'api_dispatch_detail' resource_name=vocabulary api_name='v1' pk=object.pk %}?format=skos" class="button white">View in SKOS</a>
+                <a id="btnSKOS" download="{{vocabulary}}_{{object.term}}.rdf" href="{% url 'api_dispatch_detail' resource_name=vocabulary api_name='v1' pk=object.pk %}?format=skos" target="_blank" class="button white">Download this Term</a>
+            </div>
+            <h2>
+                {{ object.name }}<span class="vocabulary-type">{{ vocabulary_verbose }}</span>
+                <span class="parent-link">
+                    <a href="{% url vocabulary %}" class="tooltip" data-tip="Navigate to the {{ vocabulary_verbose }} vocabulary list.">⤴</a>
+                </span>
+            </h2>
+            <h4>{{ object.term }}: {{ object.definition }}</h4>
+        </header>
 
-            <fieldset>
-                <legend>{{ object.name }} - {{ vocabulary_verbose }}</legend>
-
-                <label class="col-lg-3 control-label">Term</label>
-                <div class="col-lg-9"><p>{{ object.term }}</p></div>
-
-                <label class="col-lg-3 control-label">Definition</label>
-                <div class="col-lg-9"><p>{{ object.definition }}</p></div>
-
-                <label class="col-lg-3 control-label">Category</label>
-                <div class="col-lg-9"><p>{{ object.category|default:"-" }}</p></div>
-
-                <label class="col-lg-3 control-label">Provenance</label>
-                <div class="col-lg-9"><p>{{ object.provenance|default:"-" }}</p></div>
-
-                <label class="col-lg-3 control-label">ProvenanceUri</label>
-                <div class="col-lg-9"><p>{{ object.provenanceuri|default:"-" }}</p></div>
-
-                <label class="col-lg-3 control-label">Note</label>
-                <div class="col-lg-9"><p>{{ object.note|default:"-" }}</p></div>
-
-                {% block specific_fields %}{% endblock %}
-            </fieldset>
+        <div class="column two-columns data-view">
+            {% for field, value in fields.iteritems %}
+                <div class="list-item column two-columns {% if forloop.last %} last-list-item {% endif %}">
+                    <div class="list-title"><h3>{{ field }}</h3></div>
+                    <div class="list-description"><p>{{ value|default:"-" }}</p></div>
+                </div>
+            {% endfor %}
         </div>
-    </div>
+        <div class="clear"></div>
+    </section>
 {% endblock %}

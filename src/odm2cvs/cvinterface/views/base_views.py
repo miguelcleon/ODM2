@@ -1,8 +1,11 @@
 from uuid import uuid4
+from string import capwords
+from django.contrib.messages.views import SuccessMessageMixin
+
 from django.utils import timezone
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse
 
 
 # Vocabulary Basic Views
@@ -33,14 +36,17 @@ class DefaultVocabularyListView(ListView):
 class DefaultVocabularyDetailView(DetailView):
     vocabulary = None
     vocabulary_verbose = None
+    exclude = ['term', 'name', 'definition']
 
     def __init__(self, **kwargs):
+        super(DefaultVocabularyDetailView, self).__init__(**kwargs)
         self.vocabulary = kwargs['vocabulary']
         self.vocabulary_verbose = kwargs['vocabulary_verbose']
-        super(DefaultVocabularyDetailView, self).__init__(**kwargs)
+
 
     def get_context_data(self, **kwargs):
         context = super(DefaultVocabularyDetailView, self).get_context_data(**kwargs)
+        context['fields'] = dict((capwords(field.verbose_name), field.value_to_string(self.get_object())) for field in self.model._meta.fields if field.name not in self.exclude)
         context['vocabulary_verbose'] = self.vocabulary_verbose
         context['vocabulary'] = self.vocabulary
         context['create_url'] = self.vocabulary + '_form'
@@ -69,31 +75,31 @@ class DefaultRequestListView(ListView):
         return context
 
 
-class DefaultRequestUpdateView(UpdateView):
-    request = None
+class DefaultRequestUpdateView(SuccessMessageMixin, UpdateView):
+    request_name = None
     vocabulary = None
     vocabulary_model = None
     request_verbose = None
-    success_view = 'update_request_success'
     accept_button = 'request_accept'
     reject_button = 'request_reject'
+    success_message = 'The request has been updated.'
     exclude = ['request_id', 'term', 'status', 'date_submitted', 'date_status_changed', 'original_request']
     read_only = []
 
     def __init__(self, **kwargs):
         super(DefaultRequestUpdateView, self).__init__(**kwargs)
-        self.request = kwargs['request']
+        self.request_name = kwargs['request_name']
         self.vocabulary = kwargs['vocabulary']
         self.vocabulary_model = kwargs['vocabulary_model']
         self.request_verbose = kwargs['request_verbose']
-        self.success_url = reverse_lazy(self.success_view, kwargs={'redirect_model': self.request})
+        self.success_url = reverse(self.request_name)
         self.fields = [field.name for field in self.model._meta.fields if field.name not in self.exclude]
 
     def get_context_data(self, **kwargs):
         context = super(DefaultRequestUpdateView, self).get_context_data(**kwargs)
         context['all_disabled'] = False if self.object.status == ControlVocabularyRequest.PENDING else True
         context['read_only'] = self.read_only
-        context['request'] = self.request
+        context['request_name'] = self.request_name
         context['request_verbose'] = self.request_verbose
         context['update_url'] = self.vocabulary + '_update_form'
         context['vocabulary'] = self.vocabulary
@@ -151,23 +157,33 @@ class DefaultRequestUpdateView(UpdateView):
         form.instance.save()
 
 
-# TODO: use the model fields to get the list of fields and have an 'exclude' list. that way a class is not necessary to add the extra fields of a class.
-class DefaultRequestCreateView(CreateView):
-    request = None
+class DefaultRequestCreateView(SuccessMessageMixin, CreateView):
+    request_name = None
     vocabulary = None
     request_verbose = None
     vocabulary_model = None
-    success_view = 'new_request_success'
-    fields = ['term', 'name', 'definition', 'category', 'provenance', 'provenance_uri',
-              'note', 'request_notes', 'submitter_name', 'submitter_email', 'request_reason']
+    vocabulary_verbose = None
+    success_message = 'Your request has been made successfully.'
+    exclude = ['request_id', 'status', 'date_submitted', 'date_status_changed', 'original_request']
 
     def __init__(self, **kwargs):
-        self.request = kwargs['request']
+        super(DefaultRequestCreateView, self).__init__(**kwargs)
+        self.request_name = kwargs['request_name']
         self.vocabulary = kwargs['vocabulary']
         self.request_verbose = kwargs['request_verbose']
         self.vocabulary_model = kwargs['vocabulary_model']
-        self.success_url = reverse_lazy(self.success_view, kwargs={'redirect_model': self.vocabulary})
-        super(DefaultRequestCreateView, self).__init__(**kwargs)
+        self.vocabulary_verbose = kwargs['vocabulary_verbose']
+        self.success_url = reverse(self.vocabulary)
+        self.fields = [field.name for field in self.model._meta.fields if field.name not in self.exclude]
+
+    def get_context_data(self, **kwargs):
+        context = super(DefaultRequestCreateView, self).get_context_data(**kwargs)
+        context['request_name'] = self.request_name
+        context['request_verbose'] = self.request_verbose
+        context['vocabulary_verbose'] = self.vocabulary_verbose
+        context['vocabulary'] = self.vocabulary
+        context['term'] = self.kwargs['term'] if 'term' in self.kwargs else ''
+        return context
 
     def get_initial(self):
         if 'term' not in self.kwargs:
@@ -184,18 +200,3 @@ class DefaultRequestCreateView(CreateView):
             initial_data[field] = concept.__getattribute__(field)
 
         return initial_data
-
-    def get_context_data(self, **kwargs):
-        context = super(DefaultRequestCreateView, self).get_context_data(**kwargs)
-        context['request'] = self.request
-        context['request_verbose'] = self.request_verbose
-        context['vocabulary'] = self.vocabulary
-        return context
-
-
-class ActionTypeRequestCreateView(DefaultRequestCreateView):
-    fields = DefaultRequestCreateView.fields + ['produces_result']
-
-
-class SpatialOffsetTypeCreateView(DefaultRequestCreateView):
-    fields = DefaultRequestCreateView.fields + ['offset1', 'offset2', 'offset3']

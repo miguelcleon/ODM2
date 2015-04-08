@@ -6,7 +6,7 @@ from cvservices.api import v1_api
 
 from cvinterface.control_vocabularies import requests
 from cvinterface.views.vocabulary_views import VocabulariesView, list_views, detail_views
-from cvinterface.views.request_views import RequestsView, SuccessRedirectView, \
+from cvinterface.views.request_views import RequestsView, \
     request_list_views, request_create_views, request_update_views
 
 urlpatterns = patterns('',
@@ -14,12 +14,7 @@ urlpatterns = patterns('',
     url(r'^' + settings.SITE_URL + 'api/', include(v1_api.urls)),
     url(r'^' + settings.SITE_URL + 'admin/', include(admin.site.urls)),
     url(r'^' + settings.SITE_URL + 'requests/$', RequestsView.as_view(), name='requests_list'),
-    url(r'^' + settings.SITE_URL + 'requests/success/create/(?P<redirect_model>\w+)/$',
-        SuccessRedirectView.as_view(message="Your request for a new concept has been made."), name='new_request_success'),
-    url(r'^' + settings.SITE_URL + 'requests/success/update/(?P<redirect_model>\w+)/$',
-        SuccessRedirectView.as_view(message="The request and vocabulary have been updated."), name='update_request_success'),
 )
-
 
 
 # cv list views

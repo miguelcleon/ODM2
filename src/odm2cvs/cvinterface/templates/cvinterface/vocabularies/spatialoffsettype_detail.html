@@ -1,9 +1,0 @@
-{% extends 'cvinterface/vocabularies/default_detail.html' %}
-{% block specific_fields %}
-    <label class="col-lg-3 control-label">Offset1</label>
-    <div class="col-lg-9"><p>{{ object.offset1|default:"-" }}</p></div>
-    <label class="col-lg-3 control-label">Offset2</label>
-    <div class="col-lg-9"><p>{{ object.offset2|default:"-" }}</p></div>
-    <label class="col-lg-3 control-label">Offset3</label>
-    <div class="col-lg-9"><p>{{ object.offset3|default:"-" }}</p></div>
-{% endblock %}

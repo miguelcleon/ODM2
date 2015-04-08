@@ -23,7 +23,6 @@ vocabularies = {
         'name': ActionType._meta.verbose_name,
         'definition': 'A vocabulary for describing the type of actions performed in making observations. Depending on the action type, the action may or may not produce an observation result.',
         'model': ActionType,
-        'detail_template': 'cvinterface/vocabularies/actiontype_detail.html',
     },
     'methodtype': {
         'name': MethodType._meta.verbose_name,
@@ -114,7 +113,6 @@ vocabularies = {
         'name': SpatialOffsetType._meta.verbose_name,
         'definition': 'A vocabulary for describing the type of SpatialOffset that exists between two SamplingFeatures.',
         'model': SpatialOffsetType,
-        'detail_template': 'cvinterface/vocabularies/spatialoffsettype_detail.html',
     },
      'speciation': {
         'name': Speciation._meta.verbose_name,
@@ -151,11 +149,6 @@ vocabularies = {
         'definition': 'A vocabulary for describing the type of Variables. VariableTypes provide a way to group Variables into categories for easier querying and filtering.',
         'model': VariableType,
     },
-    # TODO: add the other vocabularies.
-    # if the vocabulary has extra fields, take as an example action type:
-    #   just add a new detail template with the same name convention (vocabulary_detail.html)
-    # if the vocabulary does not have any extra fields, take as an example method type:
-    #   just specify the model class and the name: Model._meta.verbose_name (doesn't really have to be that one, I'm using it because it's already there.)
 }
 
 requests = {
@@ -167,7 +160,6 @@ requests = {
         'vocabulary_model': ActionType,
         'name': ActionTypeRequest._meta.verbose_name,
         'model': ActionTypeRequest,
-        'create_view': ActionTypeRequestCreateView,
     },
     'methodtyperequest': {
         'vocabulary': 'methodtype',
@@ -282,7 +274,6 @@ requests = {
         'vocabulary_model': SpatialOffsetType,
         'name': SpatialOffsetTypeRequest._meta.verbose_name,
         'model': SpatialOffsetTypeRequest,
-        'create_view': SpatialOffsetTypeCreateView,
     },
     'speciationrequest': {
         'vocabulary': 'speciation',
@@ -326,11 +317,4 @@ requests = {
         'name': VariableTypeRequest._meta.verbose_name,
         'model': VariableTypeRequest,
     },
-
-
-
-    # TODO: add the other requests.
-    # same as with the vocabularies.
-    # here, for a request with extra fields, you have to write a new CreateView class in base_views.py. take actiontyperequest as an example for that.
-    # if the request doesn't have extra fields, take methodtyperequest as an example.
 }
