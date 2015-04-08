@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
+from django.core.urlresolvers import reverse_lazy
 
 from cvservices.api import v1_api
 
@@ -9,11 +10,22 @@ from cvinterface.views.vocabulary_views import VocabulariesView, list_views, det
 from cvinterface.views.request_views import RequestsView, \
     request_list_views, request_create_views, request_update_views
 
+login_configuration = {
+    'template_name': 'cvinterface/account/login.html',
+    'redirect_field_name': 'next'
+}
+
+logout_configuration = {
+    'next_page': reverse_lazy('home')
+}
+
 urlpatterns = patterns('',
     url(r'^' + settings.SITE_URL + '$', VocabulariesView.as_view(), name='home'),
     url(r'^' + settings.SITE_URL + 'api/', include(v1_api.urls)),
     url(r'^' + settings.SITE_URL + 'admin/', include(admin.site.urls)),
     url(r'^' + settings.SITE_URL + 'requests/$', RequestsView.as_view(), name='requests_list'),
+    url(r'^' + settings.SITE_URL + 'login/$', 'django.contrib.auth.views.login', login_configuration, name='login'),
+    url(r'^' + settings.SITE_URL + 'logout/$', 'django.contrib.auth.views.logout', logout_configuration, name='logout'),
 )
 
 

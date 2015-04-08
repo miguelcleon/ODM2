@@ -12,8 +12,11 @@
         <div id="top-bar" class="fix-width">
             <a href="{% url "home" %}" class="brand-name">ODM2 Controlled Vocabularies</a>
             <span id="login-info">
-                <a href="">Login</a>
-                <!--Juan Caraballo | <a href="logout.html">Logout</a>-->
+                {% if user.is_authenticated %}
+                    <span class="user-name">{{ user.get_full_name }}</span> <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
             </span>
         </div>
 

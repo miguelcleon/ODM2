@@ -25,6 +25,12 @@ p {
     padding: 45px 30px;
 }
 
+.user-name {
+    padding-right: 5px;
+    color: #bebebe;
+    border-right: 1px solid rgba(100, 100, 100, .4);
+}
+
 .fix-width {
     padding: 0 30px;
     margin: auto;
@@ -283,7 +289,7 @@ tr:nth-child(odd) td {
     padding-left: 10px;
 }
 
-.data-view .list-item {
+form .list-item {
     border: none;
     font-size: .9em;
 }
@@ -440,5 +446,4 @@ a.tooltip:hover:after {
 
 .messages li {
     list-style-type: none;
-
 }
