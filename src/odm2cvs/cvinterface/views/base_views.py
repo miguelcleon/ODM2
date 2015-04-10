@@ -176,10 +176,6 @@ class DefaultRequestCreateView(SuccessMessageMixin, CreateView):
     success_message = 'Your request has been made successfully.'
     exclude = ['request_id', 'status', 'date_submitted', 'date_status_changed', 'original_request']
 
-    @method_decorator(login_required(login_url=reverse_lazy('login')))
-    def dispatch(self, *args, **kwargs):
-        return super(DefaultRequestCreateView, self).dispatch(*args, **kwargs)
-
     def __init__(self, **kwargs):
         super(DefaultRequestCreateView, self).__init__(**kwargs)
         self.request_name = kwargs['request_name']
